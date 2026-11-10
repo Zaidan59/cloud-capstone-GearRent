@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: http://host.k3d.internal:3001/student/capstone-gitops.git
+    repoURL: http://gitea:3000/student/capstone-gitops.git
     targetRevision: main
     path: overlays/dev
   destination:
