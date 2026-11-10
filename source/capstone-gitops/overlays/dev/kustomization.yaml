@@ -1,0 +1,16 @@
+resources:
+  - ../../base
+
+images:
+  - name: registry:5000/student/capstone-app
+    newName: registry:5000/student/capstone-app
+    newTag: initial
+
+patches:
+  - target:
+      kind: Deployment
+      name: capstone-app
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 1
