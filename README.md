@@ -44,6 +44,8 @@ cd app
 ```
 
 - **Endpoint API:** `http://localhost:8080/` dan `http://localhost:8080/hello`
+- **Swagger UI (Dokumentasi & Test API):** `http://localhost:8080/q/swagger-ui`
+- **OpenAPI Schema:** `http://localhost:8080/q/openapi`
 - **Health Check:** `http://localhost:8080/q/health`
 - **Quarkus Dev UI:** `http://localhost:8080/q/dev/`
 
