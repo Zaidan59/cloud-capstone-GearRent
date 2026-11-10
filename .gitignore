@@ -1,2 +1,20 @@
-  /capstone-app/
-  /.bootstrap-work/
+# Build artifacts
+target/
+app/target/
+*.class
+
+# Maven wrapper jar if any
+.mvn/wrapper/maven-wrapper.jar
+app/.mvn/wrapper/maven-wrapper.jar
+
+# Logs and runtime
+*.log
+.runtime/
+infrastructure/.runtime/
+
+# OS and Editor
+.DS_Store
+.idea/
+*.iml
+.vscode/
+.~lock.*
