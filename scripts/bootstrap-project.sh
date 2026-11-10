@@ -37,8 +37,9 @@ copy_template() {
   (cd "$dst" && git remote add origin "http://127.0.0.1:3001/$GITEA_STUDENT_USER/$repo.git" && git -c http.extraHeader="Authorization: Basic $b64" push -u origin main --force)
 }
 
-copy_template "$ROOT/templates/app-repo" "$TMP/$APP_REPO" "$APP_REPO"
-copy_template "$ROOT/templates/gitops-repo" "$TMP/$GITOPS_REPO" "$GITOPS_REPO"
+copy_template "$ROOT/app" "$TMP/$APP_REPO" "$APP_REPO"
+copy_template "$ROOT/gitops" "$TMP/$GITOPS_REPO" "$GITOPS_REPO"
+rm -rf "$TMP"
 
 # Store GitOps credential as Actions secret. It remains local to the Gitea instance.
 curl -fsS -u "$AUTH" -X PUT -H 'Content-Type: application/json' \
@@ -49,4 +50,3 @@ echo
 echo 'Project repositories are ready:'
 echo "  http://127.0.0.1:3001/$GITEA_STUDENT_USER/$APP_REPO"
 echo "  http://127.0.0.1:3001/$GITEA_STUDENT_USER/$GITOPS_REPO"
-echo "Local template copies are under $TMP"

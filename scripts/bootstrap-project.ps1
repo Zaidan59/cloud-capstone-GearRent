@@ -12,7 +12,8 @@ function Push-Template($source,$repo){
   Get-ChildItem -Recurse -File $dst | ForEach-Object { $c=Get-Content $_.FullName -Raw; $c=$c.Replace('__GITEA_USER__',$user).Replace('__APP_REPO__','capstone-app').Replace('__GITOPS_REPO__','capstone-gitops'); Set-Content $_.FullName $c }
   Push-Location $dst; git init -b main; git config user.name 'Capstone Bootstrap'; git config user.email 'bootstrap@example.local'; git add .; git commit -m 'Initial capstone template'; git remote add origin "http://127.0.0.1:3001/$user/$repo.git"; git -c "http.extraHeader=Authorization: Basic $auth" push -u origin main --force; Pop-Location
 }
-Push-Template (Join-Path $RootDir 'templates\app-repo') 'capstone-app'
-Push-Template (Join-Path $RootDir 'templates\gitops-repo') 'capstone-gitops'
+Push-Template (Join-Path $RootDir 'app') 'capstone-app'
+Push-Template (Join-Path $RootDir 'gitops') 'capstone-gitops'
+Remove-Item -Recurse -Force $tmp -ErrorAction SilentlyContinue
 Invoke-RestMethod "$api/repos/$user/capstone-app/actions/secrets/GITOPS_PASSWORD" -Method Put -Headers $headers -Body (@{data=$pass;description='Local GitOps repository credential'}|ConvertTo-Json) | Out-Null
 Write-Host 'Repositories bootstrapped.'
