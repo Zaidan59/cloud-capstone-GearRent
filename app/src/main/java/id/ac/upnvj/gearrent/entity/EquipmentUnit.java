@@ -37,5 +37,6 @@ public class EquipmentUnit extends PanacheEntity {
     public String status = "AVAILABLE"; // AVAILABLE, RENTED, MAINTENANCE
 
     @Version
+    @Column(nullable = false, columnDefinition = "bigint default 0")
     public Long version = 0L;
 }
