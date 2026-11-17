@@ -16,6 +16,7 @@ services:
       GITEA__actions__ENABLED: "true"
       GITEA__service__DISABLE_REGISTRATION: "true"
       GITEA__repository__DEFAULT_PRIVATE: "false"
+      GITEA__security__INSTALL_LOCK: "true"
     ports:
       - "3001:3000"
       - "2222:22"

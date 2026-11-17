@@ -11,6 +11,7 @@ app/.mvn/wrapper/maven-wrapper.jar
 *.log
 .runtime/
 infrastructure/.runtime/
+infrastructure/.env
 
 # OS and Editor
 .DS_Store
@@ -18,3 +19,6 @@ infrastructure/.runtime/
 *.iml
 .vscode/
 .~lock.*
+
+# Local AI session notes 
+AI_CONTEXT.md

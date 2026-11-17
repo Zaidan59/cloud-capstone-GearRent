@@ -6,4 +6,4 @@ if (-not (Test-Path $EnvFile)) { throw "Missing $EnvFile. Copy .env.example to .
 Get-Content $EnvFile | ForEach-Object {
   if ($_ -match '^\s*([^#][^=]*)=(.*)$') { [Environment]::SetEnvironmentVariable($matches[1].Trim(), $matches[2].Trim(), 'Process') }
 }
-function Compose { param([Parameter(ValueFromRemainingArguments=$true)]$Args) docker compose --env-file $EnvFile -f (Join-Path $InfraDir 'docker-compose.yml') @Args }
+  function Compose { docker compose --env-file $EnvFile -f (Join-Path $InfraDir 'docker-compose.yml') @args }                                                                                                
