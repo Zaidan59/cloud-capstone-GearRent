@@ -1,146 +1,110 @@
 package id.ac.upnvj.gearrent.resource;
 
-import id.ac.upnvj.gearrent.entity.EquipmentUnit;
-import id.ac.upnvj.gearrent.entity.MaintenanceRecord;
+import id.ac.upnvj.gearrent.dto.CreateReservationRequest;
+import id.ac.upnvj.gearrent.dto.HandoverRequest;
+import id.ac.upnvj.gearrent.dto.ReturnRequest;
 import id.ac.upnvj.gearrent.entity.Reservation;
-import jakarta.transaction.Transactional;
-import jakarta.ws.rs.*;
+import id.ac.upnvj.gearrent.security.AccessContextResolver;
+import id.ac.upnvj.gearrent.security.CallerContext;
+import id.ac.upnvj.gearrent.service.ReservationService;
+import jakarta.inject.Inject;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.tags.Tag;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Map;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 @Path("/api/reservations")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Tag(name = "Reservation Workflow", description = "Rental reservation, approval, and equipment return workflow")
+@Tag(name = "Reservation Workflow", description = "Multi-unit rental reservation, atomic approval, handover, and return workflow")
 public class ReservationResource {
 
+    @Inject
+    AccessContextResolver access;
+
+    @Inject
+    ReservationService reservationService;
+
     @GET
-    @Operation(summary = "List all reservations, optionally filtered by tenant")
-    public List<Reservation> list(@QueryParam("tenantId") String tenantId) {
-        if (tenantId != null && !tenantId.isBlank()) {
-            return Reservation.list("tenantId", tenantId);
+    @Operation(summary = "List reservations for caller's tenant (users only see their own reservations)")
+    public List<Reservation> list(@Context HttpHeaders headers) {
+        CallerContext ctx = access.resolve(headers);
+        if (ctx.isUser()) {
+            return Reservation.list("tenantId = ?1 and createdBy = ?2", ctx.tenantId(), ctx.username());
         }
-        return Reservation.listAll();
+        return Reservation.list("tenantId", ctx.tenantId());
     }
 
     @GET
     @Path("/{id}")
-    @Operation(summary = "Get reservation details by ID")
-    public Response getById(@PathParam("id") Long id) {
+    @Operation(summary = "Get reservation details by ID within caller's tenant")
+    public Response getById(@Context HttpHeaders headers, @PathParam("id") Long id) {
+        CallerContext ctx = access.resolve(headers);
         Reservation reservation = Reservation.findById(id);
         if (reservation == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
+        access.requireReservationAccess(ctx, reservation);
         return Response.ok(reservation).build();
     }
 
     @POST
-    @Transactional
-    @Operation(summary = "Create a new rental reservation request")
-    public Response create(Reservation request) {
-        if (request.equipment == null || request.equipment.id == null) {
-            return Response.status(Response.Status.BAD_REQUEST)
-                    .entity(Map.of("error", "Equipment ID is required"))
-                    .build();
-        }
-
-        EquipmentUnit unit = EquipmentUnit.findById(request.equipment.id);
-        if (unit == null) {
-            return Response.status(Response.Status.NOT_FOUND)
-                    .entity(Map.of("error", "Equipment unit not found"))
-                    .build();
-        }
-
-        if (!"AVAILABLE".equalsIgnoreCase(unit.status)) {
-            return Response.status(Response.Status.CONFLICT)
-                    .entity(Map.of("error", "Equipment is currently not available: " + unit.status))
-                    .build();
-        }
-
-        request.equipment = unit;
-        if (request.tenantId == null || request.tenantId.isBlank()) {
-            request.tenantId = unit.tenantId;
-        }
-
-        if (request.startDate != null && request.endDate != null) {
-            long days = ChronoUnit.DAYS.between(request.startDate, request.endDate);
-            if (days <= 0) days = 1;
-            request.totalCost = days * (unit.dailyRate != null ? unit.dailyRate : 0.0);
-        }
-
-        request.status = "PENDING";
-        request.persist();
-
-        return Response.status(Response.Status.CREATED).entity(request).build();
+    @Operation(summary = "Create a new multi-unit rental reservation request")
+    public Response create(@Context HttpHeaders headers, CreateReservationRequest request) {
+        CallerContext ctx = access.resolve(headers);
+        Reservation created = reservationService.createReservation(ctx, request);
+        return Response.status(Response.Status.CREATED).entity(created).build();
     }
 
     @PUT
     @Path("/{id}/approve")
-    @Transactional
-    @Operation(summary = "Operator approves reservation and allocates equipment (status -> RENTED)")
-    public Response approve(@PathParam("id") Long id) {
-        Reservation res = Reservation.findById(id);
-        if (res == null) {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
+    @Operation(summary = "Atomically lock and approve all units in a reservation (operator/admin only)")
+    public Response approve(@Context HttpHeaders headers, @PathParam("id") Long id) {
+        CallerContext ctx = access.resolve(headers);
+        return Response.ok(reservationService.approveReservation(ctx, id)).build();
+    }
 
-        EquipmentUnit unit = EquipmentUnit.findById(res.equipment.id);
-        if (unit == null || !"AVAILABLE".equalsIgnoreCase(unit.status)) {
-            return Response.status(Response.Status.CONFLICT)
-                    .entity(Map.of("error", "Cannot approve: Equipment unit is already rented or under maintenance"))
-                    .build();
-        }
+    @PUT
+    @Path("/{id}/reject")
+    @Operation(summary = "Reject a pending reservation (operator/admin only)")
+    public Response reject(@Context HttpHeaders headers, @PathParam("id") Long id, Map<String, String> payload) {
+        CallerContext ctx = access.resolve(headers);
+        String reason = payload != null ? payload.get("reason") : null;
+        return Response.ok(reservationService.rejectReservation(ctx, id, reason)).build();
+    }
 
-        res.status = "APPROVED";
-        unit.status = "RENTED";
+    @PUT
+    @Path("/{id}/cancel")
+    @Operation(summary = "Cancel a PENDING or APPROVED reservation")
+    public Response cancel(@Context HttpHeaders headers, @PathParam("id") Long id) {
+        CallerContext ctx = access.resolve(headers);
+        return Response.ok(reservationService.cancelReservation(ctx, id)).build();
+    }
 
-        return Response.ok(res).build();
+    @POST
+    @Path("/{id}/handover")
+    @Operation(summary = "Record handover inspection and mark units RENTED (operator/admin only)")
+    public Response handover(@Context HttpHeaders headers, @PathParam("id") Long id, HandoverRequest request) {
+        CallerContext ctx = access.resolve(headers);
+        return Response.ok(reservationService.handoverReservation(ctx, id, request)).build();
     }
 
     @POST
     @Path("/{id}/return")
-    @Transactional
-    @Operation(summary = "Record equipment return, condition inspection, and flag maintenance if needed")
-    public Response returnEquipment(@PathParam("id") Long id, Map<String, Object> payload) {
-        Reservation res = Reservation.findById(id);
-        if (res == null) {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
-
-        EquipmentUnit unit = EquipmentUnit.findById(res.equipment.id);
-        if (unit == null) {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
-
-        boolean hasDamage = Boolean.TRUE.equals(payload.get("hasDamage"));
-        String notes = (String) payload.getOrDefault("notes", "Normal return");
-
-        res.status = "RETURNED";
-        res.returnNotes = notes;
-
-        if (hasDamage) {
-            unit.status = "MAINTENANCE";
-            unit.conditionNotes = "Damaged during rental #" + res.id + ": " + notes;
-
-            MaintenanceRecord m = new MaintenanceRecord();
-            m.tenantId = res.tenantId;
-            m.equipment = unit;
-            m.issueDescription = notes;
-            m.status = "OPEN";
-            m.persist();
-        } else {
-            unit.status = "AVAILABLE";
-        }
-
-        return Response.ok(Map.of(
-                "reservation", res,
-                "equipmentStatus", unit.status,
-                "message", hasDamage ? "Returned with damage. Maintenance order created." : "Equipment returned in good condition."
-        )).build();
+    @Operation(summary = "Record return inspection, detect late return, and create maintenance orders for damaged units (operator/admin only)")
+    public Response returnEquipment(@Context HttpHeaders headers, @PathParam("id") Long id, ReturnRequest request) {
+        CallerContext ctx = access.resolve(headers);
+        return Response.ok(reservationService.returnReservation(ctx, id, request)).build();
     }
 }

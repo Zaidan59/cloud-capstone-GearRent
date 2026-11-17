@@ -7,6 +7,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 
+/** Maintenance work order triggered manually or from damaged equipment return. */
 @Entity
 @Table(name = "maintenance_records")
 public class MaintenanceRecord extends PanacheEntity {
@@ -17,7 +18,10 @@ public class MaintenanceRecord extends PanacheEntity {
     @ManyToOne
     public EquipmentUnit equipment;
 
-    @Column(name = "issue_description", nullable = false)
+    @Column(name = "source_reservation_id")
+    public Long sourceReservationId;
+
+    @Column(name = "issue_description", nullable = false, length = 500)
     public String issueDescription;
 
     @Column(name = "reported_at", nullable = false)
@@ -26,6 +30,9 @@ public class MaintenanceRecord extends PanacheEntity {
     @Column(name = "status", nullable = false, length = 30)
     public String status = "OPEN"; // OPEN, RESOLVED
 
-    @Column(name = "resolution_notes")
+    @Column(name = "resolution_notes", length = 500)
     public String resolutionNotes;
+
+    @Column(name = "resolved_at")
+    public LocalDateTime resolvedAt;
 }
