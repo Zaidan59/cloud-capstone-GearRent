@@ -16,9 +16,9 @@ Repository ini menggabungkan **source code aplikasi (`app/`)**, **konfigurasi Gi
 
 ```text
 .
-├── app/                  # Source code backend Quarkus (Java), Dockerfile, & CI workflow (.gitea/)
+├── app/                  # Backend Quarkus Multi-Tenant GearRent (API, tests, Dockerfile, & .gitea/ CI workflow)
 ├── gitops/               # Manifest Kubernetes (Kustomize base & overlays) untuk Argo CD
-├── infrastructure/       # Docker Compose (Gitea, Runner, PostgreSQL, Keycloak, Registry, Prometheus, Grafana)
+├── infrastructure/       # Docker Compose (Gitea, Runner, PostgreSQL, Keycloak, Registry, Prometheus, & Grafana provisioning)
 ├── scripts/              # Skrip otomasi operasional lab (Bash & PowerShell)
 ├── smoke-test/           # Utilitas uji coba koneksi registry & kluster k3d
 ├── templates/            # Template referensi bawaan infrastruktur
@@ -190,14 +190,194 @@ Remove-Item -Recurse -Force app\target -ErrorAction SilentlyContinue
 
 ---
 
+## Tahap Lanjutan (Setelah Setup Awal Berhasil): Testing, Monitoring (M5), & Uji Recovery (M7)
+
+Bagian ini adalah **kelanjutan langsung** setelah Langkah 1–10 pada Cara 2 selesai (`capstone-app` berstatus `Synced` & `Healthy` di Argo CD). Jika ingin mengecek ulang kondisi seluruh stack kapan saja, jalankan:
+
+- **Linux / macOS (Bash):** `./scripts/doctor.sh && ./scripts/status.sh`
+- **Windows (PowerShell):** `.\scripts\doctor.ps1; .\scripts\status.ps1`
+
+---
+
+### 1. Automated Testing & Uji API GearRent (M2)
+
+#### A. Menjalankan Automated Tests (`mvnw verify`)
+Suite test menjalankan 9 skenario JUnit 5 / RestAssured (`GreetingResourceTest`, `ReservationWorkflowTest`, `AvailabilityAndConcurrencyTest`, `TenantIsolationAndRoleTest`, `ObservabilityMetricsTest`) menggunakan database H2 in-memory dan random HTTP test port (`%test.quarkus.http.test-port=0`, agar tidak bentrok dengan Keycloak di port `8081`). Membutuhkan **JDK 21+**.
+
+- **Linux / macOS (Bash):**
+  ```bash
+  cd app
+  ./mvnw -B verify
+  ```
+- **Windows (PowerShell):**
+  ```powershell
+  cd app
+  .\mvnw.cmd -B verify
+  ```
+  Pastikan hasil akhir menunjukkan `Tests run: 9, Failures: 0, Errors: 0, Skipped: 0` dan `BUILD SUCCESS`.
+
+#### B. Uji API & Multi-Tenancy di Kubernetes (`http://capstone.localhost:8088`)
+
+> **⚠️ Penting (Jangan tertukar port):**
+> - Aplikasi di **Kubernetes (`k3d`)** berjalan di **`http://capstone.localhost:8088`** (`Swagger UI`: `http://capstone.localhost:8088/q/swagger-ui`). **Hanya traffic ke port `8088` yang terekam Prometheus & Grafana.**
+> - Aplikasi mode lokal (`quarkus:dev` pada Cara 1) berjalan di **`http://localhost:8080`** dan tidak di-scrape Prometheus.
+
+**Header Wajib untuk Endpoint `/api/*`:**
+Saat ini aplikasi menggunakan mode header trust (`gearrent.auth.trust-headers=true`) untuk validasi tenant isolation & RBAC sebelum integrasi Keycloak OIDC penuh:
+- `X-Tenant-Id`: `tenant-a` *(Jakarta Camera Rental: `CAM-001`, `LNS-001`, `LGT-001`)* atau `tenant-b` *(Bandung Visual Gear: `CAM-002`, `STB-001`)*
+- `X-User-Role`: `user` | `operator` | `admin`
+- `X-User-Id` *(opsional)*: mis. `budi` *(default: `<role>@<tenant>`)*
+
+> Jika Anda mengetes lewat **Swagger UI**, klik endpoint lalu isi kolom header `X-Tenant-Id` dan `X-User-Role` sebelum menekan **Execute** (atau isi lewat tombol `Authorize` jika tersedia). Tanpa header tersebut, endpoint `/api/*` mengembalikan `401 Unauthorized`.
+
+**Contoh Uji Cepat via Terminal:**
+
+- **Linux / macOS (Bash):**
+  ```bash
+  # 1. Cek Health & daftar aset tenant-a (200 OK)
+  curl -sf http://capstone.localhost:8088/q/health/ready
+  curl -s -H "X-Tenant-Id: tenant-a" -H "X-User-Role: operator" http://capstone.localhost:8088/api/equipments
+  curl -s -H "X-Tenant-Id: tenant-a" -H "X-User-Role: operator" http://capstone.localhost:8088/api/reports/summary
+
+  # 2. Uji negatif: tanpa header (harus 401) & role user mengakses report operator (harus 403)
+  curl -s -o /dev/null -w "no-header: %{http_code}\n" http://capstone.localhost:8088/api/equipments
+  curl -s -o /dev/null -w "user-report: %{http_code}\n" -H "X-Tenant-Id: tenant-a" -H "X-User-Role: user" http://capstone.localhost:8088/api/reports/summary
+
+  # 3. (Opsional) Buat reservasi baru multi-unit untuk tenant-a
+  curl -i -X POST http://capstone.localhost:8088/api/reservations \
+    -H "Content-Type: application/json" \
+    -H "X-Tenant-Id: tenant-a" -H "X-User-Role: user" -H "X-User-Id: budi" \
+    -d '{"customerName":"Budi","customerEmail":"budi@example.com","equipmentIds":[1],"startDate":"2026-12-01","endDate":"2026-12-03","notes":"Liputan event"}'
+  ```
+
+- **Windows (PowerShell):**
+  ```powershell
+  # 1. Cek Health & daftar aset + laporan tenant-a (200 OK)
+  curl.exe -sf http://capstone.localhost:8088/q/health/ready
+  $hOp = @{ "X-Tenant-Id" = "tenant-a"; "X-User-Role" = "operator" }
+  Invoke-RestMethod -Uri "http://capstone.localhost:8088/api/equipments" -Headers $hOp | Format-Table id, assetCode, name, status, dailyRate
+  Invoke-RestMethod -Uri "http://capstone.localhost:8088/api/reports/summary" -Headers $hOp
+
+  # 2. Uji negatif: tanpa header (harus 401) & role user mengakses report operator (harus 403)
+  curl.exe -s -o NUL -w "no-header: %{http_code}`n" http://capstone.localhost:8088/api/equipments
+  curl.exe -s -o NUL -w "user-report: %{http_code}`n" -H "X-Tenant-Id: tenant-a" -H "X-User-Role: user" http://capstone.localhost:8088/api/reports/summary
+
+  # 3. (Opsional) Buat reservasi baru multi-unit untuk tenant-a
+  $body = '{"customerName":"Budi","customerEmail":"budi@example.com","equipmentIds":[1],"startDate":"2026-12-01","endDate":"2026-12-03","notes":"Liputan event"}'
+  Invoke-RestMethod -Method Post -Uri "http://capstone.localhost:8088/api/reservations" `
+    -Headers @{ "X-Tenant-Id" = "tenant-a"; "X-User-Role" = "user"; "X-User-Id" = "budi" } `
+    -ContentType "application/json" -Body $body
+  ```
+
+---
+
+### 2. Observability & Dashboard SLO (M5 — Prometheus & Grafana)
+
+1. **Nyalakan Stack Observability:**
+   - **Linux / macOS (Bash):** `./scripts/up-observability.sh`
+   - **Windows (PowerShell):** `.\scripts\up-observability.ps1`
+
+2. **Verifikasi Target Prometheus:**
+   Buka `http://127.0.0.1:9090/targets` di browser dan pastikan target `capstone-app` (`http://k3d-capstone-serverlb:80/q/metrics`, interval `10s`) berstatus **`UP`**.
+   Anda juga dapat memeriksa endpoint metrik mentah secara langsung di `http://capstone.localhost:8088/q/metrics`.
+
+3. **Buka Dashboard Grafana (Auto-Provisioned):**
+   - Buka `http://127.0.0.1:3000` (login: `admin` / `admin`).
+   - Dashboard **`GearRent - Service Overview & SLO`** otomatis terpasang dari `infrastructure/grafana/provisioning/dashboards/` dan dapat dibuka langsung di:
+     `http://127.0.0.1:3000/d/gearrent-overview/gearrent-service-overview-and-slo`
+   - Panel utama yang dipantau: `Target Health (up)`, `HTTP Request Rate`, `5xx Error Rate (SLO < 1%)`, `p95 Latency (SLO <= 2s)`, `HTTP Request Rate by Route & Status`, `Request Latency Percentiles (p50 & p95 vs 2s SLO)`, `PostgreSQL Agroal Connection Pool`, `JVM Heap Memory`, `CPU Usage (%)`, dan `Vert.x Worker Pool`.
+
+4. **Memicu Traffic Agar Kurva `rate()` & `p95 Latency` Muncul:**
+   > **Catatan:** Micrometer mencatat metrik route HTTP secara *lazy* sejak request pertama masuk, dan fungsi `rate()` Prometheus butuh minimal **2 kali scrape** (`>= 20 detik` pada interval `10s`) untuk menghitung kemiringan kurva. Setelah mengirim traffic ke port **`8088`**, tunggu ~15–20 detik dan atur time range Grafana ke **`Last 5 minutes`** atau **`Last 15 minutes`** (refresh `5s`).
+
+   - **Linux / macOS (Bash):**
+     ```bash
+     for i in $(seq 1 15); do
+       curl -sf -H "X-Tenant-Id: tenant-a" -H "X-User-Role: operator" http://capstone.localhost:8088/api/equipments > /dev/null
+       sleep 2
+     done
+     ```
+   - **Windows (PowerShell):**
+     ```powershell
+     1..15 | ForEach-Object {
+       Invoke-RestMethod -Uri "http://capstone.localhost:8088/api/equipments" -Headers @{ "X-Tenant-Id" = "tenant-a"; "X-User-Role" = "operator" } | Out-Null
+       Start-Sleep -Seconds 2
+     }
+     ```
+
+---
+
+### 3. Uji Recovery & Backup/Restore Validation (M7)
+
+#### A. Uji Pod Self-Healing & Persistensi Data (Kubernetes)
+Simulasikan pod aplikasi terhapus/crash lalu pastikan Kubernetes membuat pod pengganti berstatus `Ready` dalam <= 120 detik dan data PostgreSQL tetap utuh (`quarkus.hibernate-orm.database.generation=update` + `SeedDataInitializer` idempoten):
+
+- **Linux / macOS (Bash):**
+  ```bash
+  kubectl -n capstone get pods -l app=capstone-app
+  kubectl -n capstone delete pod -l app=capstone-app
+  kubectl -n capstone wait --for=condition=Ready pod -l app=capstone-app --timeout=120s
+  curl -sf http://capstone.localhost:8088/q/health/ready
+  curl -s -H "X-Tenant-Id: tenant-a" -H "X-User-Role: operator" http://capstone.localhost:8088/api/equipments
+  ```
+- **Windows (PowerShell):**
+  ```powershell
+  kubectl -n capstone get pods -l app=capstone-app
+  kubectl -n capstone delete pod -l app=capstone-app
+  kubectl -n capstone wait --for=condition=Ready pod -l app=capstone-app --timeout=120s
+  curl.exe -sf http://capstone.localhost:8088/q/health/ready
+  Invoke-RestMethod -Uri "http://capstone.localhost:8088/api/equipments" -Headers @{ "X-Tenant-Id" = "tenant-a"; "X-User-Role" = "operator" } | Format-Table id, assetCode, name, status
+  ```
+
+#### B. Backup PostgreSQL & Validasi Restore
+
+> ⚠️ **Catatan Skrip PowerShell di Windows PowerShell 5.1:**
+> Skrip bawaan `scripts\backup-postgres.ps1` membutuhkan **PowerShell 7+** (`ArgumentList` pada .NET 5+), dan `scripts\restore-postgres-validation.ps1` memiliki kendala urutan `param(...)`. Pada **Windows PowerShell 5.1** (bawaan Windows 10/11), gunakan perintah `docker exec` lewat `cmd /c` di bawah ini agar file `.dump` tidak bernilai 0 byte.
+
+- **Linux / macOS (Bash):**
+  ```bash
+  # 1. Buat backup ke backups/capstone-<timestamp>.dump
+  ./scripts/backup-postgres.sh
+
+  # 2. Validasi restore ke database isolasi capstone_restore_validation
+  LATEST_DUMP=$(ls -t backups/*.dump | head -n 1)
+  ./scripts/restore-postgres-validation.sh "$LATEST_DUMP"
+  ```
+
+- **Windows (PowerShell — aman untuk PowerShell 5.1 maupun 7+):**
+  ```powershell
+  # 1. Buat backup (format custom -Fc) ke folder backups\
+  New-Item -ItemType Directory -Force -Path backups | Out-Null
+  $dump = "backups\capstone-$(Get-Date -Format 'yyyyMMdd-HHmmss').dump"
+  cmd /c "docker exec capstone-postgres pg_dump -U capstone -d capstone -Fc > $dump"
+  Get-Item $dump | Select-Object Name, Length   # pastikan Length > 0
+
+  # 2. Validasi restore ke database terpisah capstone_restore_validation
+  docker exec capstone-postgres psql -U capstone -d postgres -c "DROP DATABASE IF EXISTS capstone_restore_validation;"
+  docker exec capstone-postgres psql -U capstone -d postgres -c "CREATE DATABASE capstone_restore_validation;"
+  cmd /c "docker exec -i capstone-postgres pg_restore -U capstone -d capstone_restore_validation --no-owner < $dump"
+  docker exec capstone-postgres psql -U capstone -d capstone_restore_validation -c "\dt"
+  docker exec capstone-postgres psql -U capstone -d capstone_restore_validation -c "SELECT count(*) AS equipment_count FROM equipment_units;"
+
+  # 3. (Opsional) Bersihkan database uji restore setelah verifikasi selesai
+  docker exec capstone-postgres psql -U capstone -d postgres -c "DROP DATABASE IF EXISTS capstone_restore_validation;"
+  ```
+  Pastikan daftar tabel (`equipment_units`, `inspection_records`, `maintenance_records`, `reservation_items`, `reservations`, `tenants`) muncul dengan `exit code 0` di `capstone_restore_validation`.
+
+> ⚠️ **Jangan commit file `backups/*.dump` ke Git.** Folder `backups/` hanya untuk penyimpanan uji lokal.
+
+---
+
 ## Alur Kerja Harian (Kolaborasi Tim & Deploy ke Lab)
 
 1. **Coding Fitur Baru:**
    Edit atau tambahkan kode aplikasi di dalam folder `app/`.
-2. **Simpan & Bagikan ke Tim (GitHub):**
-   > Pastikan **tidak** mem-commit file lokal seperti `infrastructure/.env` atau `infrastructure/.runtime/`.
+2. **Verifikasi Sebelum Commit:**
+   Jalankan `./mvnw -B verify` *(Bash)* atau `.\mvnw.cmd -B verify` *(PowerShell)* di folder `app/`, lalu periksa `git status`.
+   > ⚠️ **Kebersihan Git:** Pastikan **tidak** mem-commit perubahan lokal pada `infrastructure/.env`, folder `infrastructure/.runtime/`, maupun file dump di `backups/`. Jika `infrastructure/.env` terlanjur termodifikasi secara lokal, hindari men-stage file tersebut saat `git add`.
    ```bash
-   git add .
+   git status
+   git add app/ README.md   # atau file spesifik yang memang ingin di-commit
    git commit -m "feat: deskripsi perubahan"
    git push origin main
    ```
@@ -246,18 +426,31 @@ docker compose --env-file infrastructure/.env -f infrastructure/docker-compose.y
 
 ---
 
+## Troubleshooting Cepat (Testing, Grafana, & Recovery)
+
+- **Endpoint `/api/*` mengembalikan `401 Unauthorized` atau `403 Forbidden`:**
+  Pastikan header `X-Tenant-Id` (`tenant-a` / `tenant-b`) dan `X-User-Role` (`user` / `operator` / `admin`) diisi pada Swagger UI maupun request API. Role `user` akan ditolak (`403`) jika memanggil endpoint operasional seperti `/api/reports/summary` atau `/api/reservations/{id}/approve`.
+- **Grafik Grafana (`HTTP Request Rate` / `p95 Latency`) tidak naik setelah mengetes API:**
+  1. Pastikan Anda menembak Kubernetes Ingress di **`http://capstone.localhost:8088`** (bukan `quarkus:dev` port `8080`).
+  2. Cek target `capstone-app` di `http://127.0.0.1:9090/targets` berstatus `UP`.
+  3. Kirim lebih dari 1 request ke endpoint yang sama dan tunggu **15–20 detik** (minimal 2 siklus scrape Prometheus `10s`), lalu set Grafana ke `Last 5 minutes`.
+- **Skrip `backup-postgres.ps1` menghasilkan file 0 byte / `restore-postgres-validation.ps1` error di Windows PowerShell 5.1:**
+  Gunakan blok perintah `cmd /c "docker exec ..."` manual pada Bagian **3.B Uji Recovery & Backup/Restore Validation** di atas yang sudah diuji langsung di Windows PowerShell 5.1.
+
+---
+
 ## Daftar URL Layanan & Kredensial Default
 
 | Layanan | URL Akses | Username | Password / Keterangan |
 | :--- | :--- | :--- | :--- |
-| **Aplikasi GearRent (Ingress k3d)** | `http://capstone.localhost:8088/` | - | Endpoint utama di Kubernetes (`Swagger UI`: `/q/swagger-ui`) |
+| **Aplikasi GearRent (Ingress k3d)** | `http://capstone.localhost:8088/` | - | Endpoint utama Kubernetes (`Swagger UI`: `/q/swagger-ui`, `Health`: `/q/health`, `Metrics`: `/q/metrics`) |
 | **Gitea (Git & Actions CI)** | `http://127.0.0.1:3001` | `student` | `student` *(Admin: `capstone-admin` / `capstone-admin`)* |
 | **Keycloak (OIDC / IAM)** | `http://127.0.0.1:8081` | `admin` | `admin` |
 | **PostgreSQL** | `127.0.0.1:5432` | `capstone` | `capstone` *(Database: `capstone`)* |
 | **OCI Docker Registry** | `http://127.0.0.1:5001/v2/_catalog` | - | Registry container lokal |
 | **Argo CD UI** | `https://127.0.0.1:8082` | `admin` | Jalankan `./scripts/argocd-ui.sh` (Linux/macOS) atau `.\scripts\argocd-ui.ps1` (Windows) dulu.<br>Cek password dengan perintah di bawah. |
-| **Prometheus** *(Opsional M5)* | `http://127.0.0.1:9090` | - | Nyalakan dengan `./scripts/up-observability.sh` atau `.\scripts\up-observability.ps1` |
-| **Grafana** *(Opsional M5)* | `http://127.0.0.1:3000` | `admin` | `admin` |
+| **Prometheus** *(M5 Observability)* | `http://127.0.0.1:9090` | - | Nyalakan dengan `./scripts/up-observability.sh` / `.ps1` (`Targets`: `/targets`) |
+| **Grafana** *(M5 Observability)* | `http://127.0.0.1:3000` | `admin` | `admin` *(Dashboard SLO: `/d/gearrent-overview/gearrent-service-overview-and-slo`)* |
 
 **Perintah untuk melihat password admin Argo CD:**
 
