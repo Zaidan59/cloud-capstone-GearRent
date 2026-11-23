@@ -96,17 +96,22 @@ Remove-Item -Recurse -Force app\target -ErrorAction SilentlyContinue
 
 > **Penting:** Traffic ke Kubernetes menggunakan **`http://capstone.localhost:8088`** (tercatat di Prometheus/Grafana), berbeda dengan `quarkus:dev` (`:8080`).
 
-1. **Jalankan 9 automated tests (H2 in-memory):**
+1. **Jalankan 11 automated tests (H2 in-memory + OIDC mock):**
    ```bash
    cd app && ./mvnw -B verify && cd ..    # Windows: cd app; .\mvnw.cmd -B verify; cd ..
    ```
-2. **Uji endpoint `/api/*` di Kubernetes** (header wajib sementara sebelum Keycloak OIDC penuh: `X-Tenant-Id` = `tenant-a` / `tenant-b`, `X-User-Role` = `user` / `operator` / `admin`):
+2. **Uji endpoint `/api/*` di Kubernetes dengan Bearer JWT Keycloak** *(lihat [TESTING.md](TESTING.md) untuk skenario lengkap M2–M8)*:
    ```bash
-   # Cek health, akses positif (200), dan uji negatif (401 tanpa header & 403 lintas role)
+   # Ambil token Keycloak (operator & usera)
+   KC="http://127.0.0.1:8081/realms/capstone/protocol/openid-connect/token"
+   TOK_OP=$(curl -sf -X POST "$KC" -d "client_id=capstone-app" -d "grant_type=password" -d "username=operator" -d "password=operator" | jq -r '.access_token')
+   TOK_USER=$(curl -sf -X POST "$KC" -d "client_id=capstone-app" -d "grant_type=password" -d "username=usera" -d "password=usera" | jq -r '.access_token')
+
+   # Cek health, akses positif (200), dan uji negatif (401 tanpa token & 403 lintas role)
    curl -sf http://capstone.localhost:8088/q/health/ready
-   curl -s -H "X-Tenant-Id: tenant-a" -H "X-User-Role: operator" http://capstone.localhost:8088/api/equipments
-   curl -s -o /dev/null -w "no-header: %{http_code}\n" http://capstone.localhost:8088/api/equipments
-   curl -s -o /dev/null -w "user-report: %{http_code}\n" -H "X-Tenant-Id: tenant-a" -H "X-User-Role: user" http://capstone.localhost:8088/api/reports/summary
+   curl -s -H "Authorization: Bearer $TOK_OP" http://capstone.localhost:8088/api/equipments
+   curl -s -o /dev/null -w "no-token: %{http_code}\n" http://capstone.localhost:8088/api/equipments
+   curl -s -o /dev/null -w "user-report: %{http_code}\n" -H "Authorization: Bearer $TOK_USER" http://capstone.localhost:8088/api/reports/summary
    ```
 
 ---
@@ -119,7 +124,7 @@ Remove-Item -Recurse -Force app\target -ErrorAction SilentlyContinue
    ```
 2. **Kirim beberapa request ke `:8088`** selama ~20–30 detik (minimal 2 siklus scrape `10s`) agar kurva `rate()` & `p95 Latency` muncul:
    ```bash
-   for i in $(seq 1 15); do curl -sf -H "X-Tenant-Id: tenant-a" -H "X-User-Role: operator" http://capstone.localhost:8088/api/equipments > /dev/null; sleep 2; done
+   for i in $(seq 1 15); do curl -sf -H "Authorization: Bearer $TOK_OP" http://capstone.localhost:8088/api/equipments > /dev/null; sleep 2; done
    ```
 3. **Verifikasi dashboard:**
    - **Prometheus:** `http://127.0.0.1:9090/targets` → pastikan `capstone-app` berstatus **`UP`**.
@@ -142,13 +147,10 @@ Remove-Item -Recurse -Force app\target -ErrorAction SilentlyContinue
    ./scripts/restore-postgres-validation.sh "$(ls -t backups/*.dump | head -n 1)"
    ```
    ```powershell
-   # Windows PowerShell 5.1 (pakai cmd /c agar file .dump tidak 0 byte)
-   New-Item -ItemType Directory -Force -Path backups | Out-Null
-   $dump = "backups\capstone-$(Get-Date -Format 'yyyyMMdd-HHmmss').dump"
-   cmd /c "docker exec capstone-postgres pg_dump -U capstone -d capstone -Fc > $dump"
-   docker exec capstone-postgres psql -U capstone -d postgres -c "DROP DATABASE IF EXISTS capstone_restore_validation; CREATE DATABASE capstone_restore_validation;"
-   cmd /c "docker exec -i capstone-postgres pg_restore -U capstone -d capstone_restore_validation --no-owner < $dump"
-   docker exec capstone-postgres psql -U capstone -d capstone_restore_validation -c "\dt"
+   # Windows PowerShell (5.1 maupun 7+)
+   .\scripts\backup-postgres.ps1
+   $latestDump = (Get-ChildItem backups\*.dump | Sort-Object LastWriteTime -Descending | Select-Object -First 1).FullName
+   .\scripts\restore-postgres-validation.ps1 $latestDump
    ```
 
 ---

@@ -244,7 +244,12 @@ ls -lh "$LATEST_DUMP"
 docker exec capstone-postgres psql -U capstone -d capstone_restore_validation -c "SELECT count(*) AS equipments FROM equipment_units; SELECT count(*) AS reservations FROM reservations;"
 ```
 
-*(Untuk pengguna **Windows PowerShell 5.1**, gunakan blok `cmd /c "docker exec ..."` pada Bagian **2 Langkah 4** di [README.md](README.md) agar file `.dump` tidak bernilai 0 byte.)*
+```powershell
+# Backup & validasi restore di Windows PowerShell (5.1 maupun 7+)
+.\scripts\backup-postgres.ps1
+$latestDump = (Get-ChildItem backups\*.dump | Sort-Object LastWriteTime -Descending | Select-Object -First 1).FullName
+.\scripts\restore-postgres-validation.ps1 $latestDump
+```
 
 ---
 
