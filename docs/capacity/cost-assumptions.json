@@ -1,0 +1,14 @@
+{
+  "model_kind": "Ilustrasi provider-neutral, bukan harga vendor atau tagihan aktual",
+  "currency": "IDR",
+  "hours_per_month": 720,
+  "monthly_successful_requests": 100000,
+  "vcpu_hour_idr": 1000,
+  "gib_hour_idr": 100,
+  "storage_gib_month_idr": 500,
+  "storage_gib": 20,
+  "vm_vcpu": 2,
+  "vm_memory_gib": 4,
+  "fixed_monthly_idr": 0,
+  "excluded": ["Pajak", "Egress", "Backup", "Operasional manusia", "High availability", "Registry, CI, dan observability terpisah"]
+}
