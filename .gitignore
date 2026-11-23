@@ -23,3 +23,5 @@ infrastructure/.env
 # Local AI session notes 
 AI_CONTEXT.md
 docs
+scripts/__pycache__/
+tests/__pycache__/
