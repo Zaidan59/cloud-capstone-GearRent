@@ -12,6 +12,7 @@ app/.mvn/wrapper/maven-wrapper.jar
 .runtime/
 infrastructure/.runtime/
 infrastructure/.env
+backups/
 
 # OS and Editor
 .DS_Store
