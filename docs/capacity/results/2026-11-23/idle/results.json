@@ -1,0 +1,184 @@
+{
+  "started_utc": "2026-11-23T13:28:13.499080+00:00",
+  "finished_utc": "2026-11-23T13:29:14.010424+00:00",
+  "source": "4987995c0332de16c9953ef45f23eab5e2448433",
+  "measurement_branch_commit": "d9545bf32d1a5adbecf1df8bf7a27d5849ead48d",
+  "executor": "Sesi lokal pada laptop Muhammad Kevin Rasendriya",
+  "scope": "Local k3d, read-only inventory browsing",
+  "environment": {
+    "ram": "16 GB",
+    "context": "k3d-gearrent-a02",
+    "namespace": "gearrent-latest"
+  },
+  "auth_mode": "trusted_demo_headers",
+  "workload": {
+    "workers": 0,
+    "per_worker_rps_ceiling": 1,
+    "configured_seconds": 60,
+    "elapsed_seconds": 60.0,
+    "timeout_seconds": 5,
+    "sample_seconds": 15,
+    "mix": "75% GET equipment, 25% GET available; closed-loop pacing"
+  },
+  "before": {
+    "deployment": "gearrent",
+    "namespace": "gearrent-latest",
+    "generation": 1,
+    "replicas": 1,
+    "available": 1,
+    "containers": [
+      {
+        "name": "app",
+        "image": "registry:5000/student/capstone-app@sha256:2e71b51b16b1e89934695137bef1f692c0ee4c1c7ee1d243b4c4f549863b5ddc",
+        "resources": {
+          "limits": {
+            "cpu": "500m",
+            "memory": "512Mi"
+          },
+          "requests": {
+            "cpu": "100m",
+            "memory": "192Mi"
+          }
+        }
+      }
+    ],
+    "pods": [
+      {
+        "name": "gearrent-74c8885494-hq7r5",
+        "uid": "d903ea58-5bd0-4b6d-8ce4-8f21c8058bae",
+        "containers": [
+          {
+            "name": "app",
+            "ready": true,
+            "restarts": 2,
+            "imageID": "registry:5000/student/capstone-app@sha256:2e71b51b16b1e89934695137bef1f692c0ee4c1c7ee1d243b4c4f549863b5ddc"
+          }
+        ]
+      }
+    ]
+  },
+  "after": {
+    "deployment": "gearrent",
+    "namespace": "gearrent-latest",
+    "generation": 1,
+    "replicas": 1,
+    "available": 1,
+    "containers": [
+      {
+        "name": "app",
+        "image": "registry:5000/student/capstone-app@sha256:2e71b51b16b1e89934695137bef1f692c0ee4c1c7ee1d243b4c4f549863b5ddc",
+        "resources": {
+          "limits": {
+            "cpu": "500m",
+            "memory": "512Mi"
+          },
+          "requests": {
+            "cpu": "100m",
+            "memory": "192Mi"
+          }
+        }
+      }
+    ],
+    "pods": [
+      {
+        "name": "gearrent-74c8885494-hq7r5",
+        "uid": "d903ea58-5bd0-4b6d-8ce4-8f21c8058bae",
+        "containers": [
+          {
+            "name": "app",
+            "ready": true,
+            "restarts": 2,
+            "imageID": "registry:5000/student/capstone-app@sha256:2e71b51b16b1e89934695137bef1f692c0ee4c1c7ee1d243b4c4f549863b5ddc"
+          }
+        ]
+      }
+    ]
+  },
+  "deployment_unchanged": true,
+  "requests": [],
+  "metrics_samples": [
+    {
+      "time": "2026-11-23T13:28:13.498512+00:00",
+      "pods": [
+        {
+          "name": "gearrent-74c8885494-hq7r5",
+          "metrics_time": "2026-11-23T13:28:02Z",
+          "window": "18.206s",
+          "containers": [
+            {
+              "name": "app",
+              "cpu_m": 114.294902,
+              "memory_mib": 229.078125
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "time": "2026-11-23T13:28:28.676608+00:00",
+      "pods": [
+        {
+          "name": "gearrent-74c8885494-hq7r5",
+          "metrics_time": "2026-11-23T13:28:21Z",
+          "window": "19.442s",
+          "containers": [
+            {
+              "name": "app",
+              "cpu_m": 9.482872,
+              "memory_mib": 215.0703125
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "time": "2026-11-23T13:28:44.325892+00:00",
+      "pods": [
+        {
+          "name": "gearrent-74c8885494-hq7r5",
+          "metrics_time": "2026-11-23T13:28:35Z",
+          "window": "13.144s",
+          "containers": [
+            {
+              "name": "app",
+              "cpu_m": 7.160073,
+              "memory_mib": 210.16796875
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "time": "2026-11-23T13:28:59.720756+00:00",
+      "pods": [
+        {
+          "name": "gearrent-74c8885494-hq7r5",
+          "metrics_time": "2026-11-23T13:28:51Z",
+          "window": "16.388s",
+          "containers": [
+            {
+              "name": "app",
+              "cpu_m": 11.362521,
+              "memory_mib": 209.859375
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "metrics_errors": [],
+  "summary": {
+    "attempts": 0,
+    "successful": 0,
+    "statuses": {},
+    "actual_rps": 0.0,
+    "success_percent": null,
+    "client_p95_ms": null,
+    "client_max_ms": null,
+    "sample_count": 4,
+    "cpu_p95_m": 114.294902,
+    "cpu_max_m": 114.294902,
+    "memory_p95_mib": 229.078125,
+    "memory_max_mib": 229.078125
+  }
+}

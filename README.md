@@ -462,3 +462,7 @@ docker compose --env-file infrastructure/.env -f infrastructure/docker-compose.y
   ```powershell
   [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String((kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}")))
   ```
+
+## M8 Capacity dan FinOps
+
+Pengukuran baseline, worksheet resource, model biaya, dan rencana CloudStack tersedia di [docs/capacity](docs/capacity/README.md). Bukti kontribusi 09 ada di [cloud-capstone-A02](cloud-capstone-A02/README.md).
