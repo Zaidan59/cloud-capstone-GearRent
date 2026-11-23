@@ -4,17 +4,36 @@ import java.util.ArrayList;
 import java.util.List;
 import org.eclipse.microprofile.openapi.OASFactory;
 import org.eclipse.microprofile.openapi.OASFilter;
+import org.eclipse.microprofile.openapi.models.Components;
 import org.eclipse.microprofile.openapi.models.OpenAPI;
 import org.eclipse.microprofile.openapi.models.Operation;
 import org.eclipse.microprofile.openapi.models.PathItem;
 import org.eclipse.microprofile.openapi.models.media.Schema;
 import org.eclipse.microprofile.openapi.models.parameters.Parameter;
+import org.eclipse.microprofile.openapi.models.security.SecurityRequirement;
+import org.eclipse.microprofile.openapi.models.security.SecurityScheme;
 
-/** Adds M2 tenant/role context headers to /api/* operations in Swagger UI. */
+/** Configures Bearer JWT security scheme and optional tenant selector header on /api/* in Swagger UI. */
 public class OpenApiHeaderFilter implements OASFilter {
+
+    private static final String BEARER_SCHEME_NAME = "bearerAuth";
 
     @Override
     public void filterOpenAPI(OpenAPI openAPI) {
+        Components components = openAPI.getComponents();
+        if (components == null) {
+            components = OASFactory.createComponents();
+            openAPI.setComponents(components);
+        }
+        components.addSecurityScheme(
+            BEARER_SCHEME_NAME,
+            OASFactory.createSecurityScheme()
+                .type(SecurityScheme.Type.HTTP)
+                .scheme("bearer")
+                .bearerFormat("JWT")
+                .description("Keycloak OIDC access token from /realms/capstone/protocol/openid-connect/token")
+        );
+
         if (openAPI.getPaths() == null || openAPI.getPaths().getPathItems() == null) {
             return;
         }
@@ -23,12 +42,17 @@ public class OpenApiHeaderFilter implements OASFilter {
                 return;
             }
             for (Operation op : operationsOf(item)) {
+                op.addSecurityRequirement(OASFactory.createSecurityRequirement().addScheme(BEARER_SCHEME_NAME));
                 List<Parameter> params = op.getParameters() != null
                     ? new ArrayList<>(op.getParameters())
                     : new ArrayList<>();
-                addHeaderIfMissing(params, "X-Tenant-Id", "Tenant identifier (e.g. tenant-a, tenant-b)", true, "tenant-a");
-                addHeaderIfMissing(params, "X-User-Role", "Caller role (user, operator, admin)", true, "operator");
-                addHeaderIfMissing(params, "X-User-Id", "Caller username (optional; defaults to role@tenant)", false, "operator1");
+                addHeaderIfMissing(
+                    params,
+                    "X-Tenant-Id",
+                    "Optional tenant selector for multi-tenant admin tokens (e.g. tenant-a, tenant-b)",
+                    false,
+                    "tenant-a"
+                );
                 op.setParameters(params);
             }
         });

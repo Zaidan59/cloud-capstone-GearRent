@@ -40,13 +40,33 @@
         "http://capstone.localhost:8088",
         "http://127.0.0.1:8088"
       ],
-      "protocol": "openid-connect"
+      "protocol": "openid-connect",
+      "protocolMappers": [
+        {
+          "name": "groups",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-group-membership-mapper",
+          "consentRequired": false,
+          "config": {
+            "full.path": "false",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "groups",
+            "userinfo.token.claim": "true"
+          }
+        }
+      ]
     }
   ],
   "users": [
     {
       "username": "usera",
       "enabled": true,
+      "email": "usera@gearrent.local",
+      "emailVerified": true,
+      "firstName": "User",
+      "lastName": "TenantA",
+      "requiredActions": [],
       "credentials": [
         {
           "type": "password",
@@ -64,6 +84,11 @@
     {
       "username": "userb",
       "enabled": true,
+      "email": "userb@gearrent.local",
+      "emailVerified": true,
+      "firstName": "User",
+      "lastName": "TenantB",
+      "requiredActions": [],
       "credentials": [
         {
           "type": "password",
@@ -81,6 +106,11 @@
     {
       "username": "operator",
       "enabled": true,
+      "email": "operator@gearrent.local",
+      "emailVerified": true,
+      "firstName": "Operator",
+      "lastName": "TenantA",
+      "requiredActions": [],
       "credentials": [
         {
           "type": "password",
@@ -90,11 +120,41 @@
       ],
       "realmRoles": [
         "operator"
+      ],
+      "groups": [
+        "/tenant-a"
+      ]
+    },
+    {
+      "username": "operatorb",
+      "enabled": true,
+      "email": "operatorb@gearrent.local",
+      "emailVerified": true,
+      "firstName": "Operator",
+      "lastName": "TenantB",
+      "requiredActions": [],
+      "credentials": [
+        {
+          "type": "password",
+          "value": "operatorb",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "operator"
+      ],
+      "groups": [
+        "/tenant-b"
       ]
     },
     {
       "username": "appadmin",
       "enabled": true,
+      "email": "appadmin@gearrent.local",
+      "emailVerified": true,
+      "firstName": "App",
+      "lastName": "Admin",
+      "requiredActions": [],
       "credentials": [
         {
           "type": "password",
@@ -104,6 +164,10 @@
       ],
       "realmRoles": [
         "admin"
+      ],
+      "groups": [
+        "/tenant-a",
+        "/tenant-b"
       ]
     }
   ]
