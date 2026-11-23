@@ -133,3 +133,23 @@ Jika JWT kedaluwarsa, request 401 tetap dihitung sebagai gagal dan harus dijelas
 Detail request dan metrik tersimpan di `results/2026-11-23/<fase>/results.json`.
 JPG merupakan ringkasan visual dari data tersebut. Konfigurasi dasar Kubernetes
 dan kode aplikasi tidak diubah oleh pekerjaan 09 ini.
+
+
+## Demo langsung oleh Kevin
+
+Pada 23 November 2026 pukul 21.04 WIB, Kevin menjalankan uji 8 worker dengan
+konfigurasi durasi 60 detik dari PowerShell. Semua 480 request menghasilkan
+HTTP 200. Laju aktual 8,0146 request/detik, p95 client 78 ms dan maksimum 266 ms.
+Empat sampel Metrics API mencatat CPU maksimum 359,260088m dan working set
+memory maksimum 254,9765625MiB. UID, image, dan resource tidak berubah selama run.
+
+Dengan limit CPU 500m dan memory 512Mi, headroom sampel demo ini masing-masing
+28,15% dan 50,20%. Request memory 192Mi berada di bawah working set terukur.
+Usulan 320Mi masih memerlukan uji ulang dan belum diterapkan.
+
+Evidence pengumpulan 09 sekarang memakai screenshot asli Screenshot_3783.png
+yang diberikan Kevin, dikonversi ke JPG tanpa mengubah isi. Screenshot menunjukkan
+hasil run ini, konfigurasi requests/limits, asumsi tarif, dan perhitungan biaya.
+JSON run berada di results/2026-11-23/live-demo-60s/results.json. Baseline tiga
+fase sebelumnya tetap tersimpan untuk perbandingan. Gambar ringkasan baseline
+tersimpan sebagai results/2026-11-23/baseline-summary.jpg.
