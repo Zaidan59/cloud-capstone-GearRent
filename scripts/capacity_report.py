@@ -13,7 +13,7 @@ def main():
     parser.add_argument('--results', required=True)
     parser.add_argument('--model', default='docs/capacity/cost-assumptions.json')
     parser.add_argument('--report', default='docs/capacity/REPORT.md')
-    parser.add_argument('--jpg', default='cloud-capstone-A02/09-capacity-finops/09_evidence.jpg')
+    parser.add_argument('--jpg', default='docs/capacity/results/2026-11-23/baseline-summary.jpg')
     args = parser.parse_args()
     root = Path(args.results)
     records = [json.loads((root / phase / 'results.json').read_text(encoding='utf-8'))
@@ -181,7 +181,13 @@ Detail request dan metrik tersimpan di `results/2026-11-23/<fase>/results.json`.
 JPG merupakan ringkasan visual dari data tersebut. Konfigurasi dasar Kubernetes
 dan kode aplikasi tidak diubah oleh pekerjaan 09 ini.
 '''
-    Path(args.report).write_text(text, encoding='utf-8')
+    report_path = Path(args.report)
+    demo_heading = '\n\n## Demo langsung oleh Kevin'
+    if report_path.exists():
+        previous = report_path.read_text(encoding='utf-8')
+        if demo_heading in previous:
+            text += demo_heading + previous.split(demo_heading, 1)[1]
+    report_path.write_text(text, encoding='utf-8')
     worksheet = {'source': first['source'], 'image': image,
                  'peak_cpu_m': peak_cpu, 'peak_memory_mib': peak_memory,
                  'cpu_limit_headroom_percent': (1 - peak_cpu / cpu_limit) * 100,

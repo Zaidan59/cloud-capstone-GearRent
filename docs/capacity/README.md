@@ -19,6 +19,10 @@ Output folder harus baru. Skrip menolak menimpa hasil yang sudah ada.
 
 Contoh PowerShell untuk lingkungan lokal pengujian ini.
 
+Contoh header demo di bawah hanya berlaku untuk runtime baseline 4987995.
+Main terbaru sudah memakai JWT. Untuk runtime versi main, gunakan token-file
+seperti bagian setelah security dan isi commit workload yang benar.
+
 ```powershell
 $kube = 'C:\Users\kevin\Documents\CloudComputing\GearRent-A02-lab\kubeconfig.yaml'
 kubectl --kubeconfig $kube --context k3d-gearrent-a02 -n gearrent-latest top pods
@@ -69,6 +73,11 @@ Pastikan tiga folder idle, load-2, dan load-8 berada di direktori hasil yang sam
 python scripts/capacity_report.py --results docs/capacity/results/2026-11-23
 python -m unittest discover -s tests -p test_capacity.py
 ```
+
+Generator menyimpan gambar ringkasan ke results/2026-11-23/baseline-summary.jpg.
+File pengumpulan 09_evidence.jpg tetap berasal dari screenshot demo aktual.
+Jalankan generator menggunakan tiga fase baseline. Catatan demo 60 detik pada
+REPORT.md ditambahkan terpisah dan perlu dipertahankan saat menyusun laporan final.
 
 Ubah cost-assumptions.json untuk mengganti tarif dan volume. Semua nilai tarif
 default merupakan asumsi ilustratif, belum mewakili penawaran penyedia cloud.

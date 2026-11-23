@@ -46,9 +46,11 @@ jobs:
           docker build -t "$PUSH_IMAGE" .
 
           # Reporting gate first. Teams may later change --exit-code to 1 for an approved blocking policy.
-          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+          docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -v trivy-cache:/root/.cache \
             aquasec/trivy:${TRIVY_VERSION} image \
-            --severity HIGH,CRITICAL --exit-code 0 "$PUSH_IMAGE"
+            --timeout 15m --severity HIGH,CRITICAL --exit-code 0 "$PUSH_IMAGE"
 
           docker push "$PUSH_IMAGE"
 
