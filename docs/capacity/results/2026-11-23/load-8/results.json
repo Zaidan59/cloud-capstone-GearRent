@@ -1,0 +1,6898 @@
+{
+  "started_utc": "2026-11-23T13:31:16.868494+00:00",
+  "finished_utc": "2026-11-23T13:33:16.949651+00:00",
+  "source": "4987995c0332de16c9953ef45f23eab5e2448433",
+  "measurement_branch_commit": "d9545bf32d1a5adbecf1df8bf7a27d5849ead48d",
+  "executor": "Sesi lokal pada laptop Muhammad Kevin Rasendriya",
+  "scope": "Local k3d, read-only inventory browsing",
+  "environment": {
+    "ram": "16 GB",
+    "context": "k3d-gearrent-a02",
+    "namespace": "gearrent-latest"
+  },
+  "auth_mode": "trusted_demo_headers",
+  "workload": {
+    "workers": 8,
+    "per_worker_rps_ceiling": 1,
+    "configured_seconds": 120,
+    "elapsed_seconds": 119.766,
+    "timeout_seconds": 5,
+    "sample_seconds": 15,
+    "mix": "75% GET equipment, 25% GET available; closed-loop pacing"
+  },
+  "before": {
+    "deployment": "gearrent",
+    "namespace": "gearrent-latest",
+    "generation": 1,
+    "replicas": 1,
+    "available": 1,
+    "containers": [
+      {
+        "name": "app",
+        "image": "registry:5000/student/capstone-app@sha256:2e71b51b16b1e89934695137bef1f692c0ee4c1c7ee1d243b4c4f549863b5ddc",
+        "resources": {
+          "limits": {
+            "cpu": "500m",
+            "memory": "512Mi"
+          },
+          "requests": {
+            "cpu": "100m",
+            "memory": "192Mi"
+          }
+        }
+      }
+    ],
+    "pods": [
+      {
+        "name": "gearrent-74c8885494-hq7r5",
+        "uid": "d903ea58-5bd0-4b6d-8ce4-8f21c8058bae",
+        "containers": [
+          {
+            "name": "app",
+            "ready": true,
+            "restarts": 2,
+            "imageID": "registry:5000/student/capstone-app@sha256:2e71b51b16b1e89934695137bef1f692c0ee4c1c7ee1d243b4c4f549863b5ddc"
+          }
+        ]
+      }
+    ]
+  },
+  "after": {
+    "deployment": "gearrent",
+    "namespace": "gearrent-latest",
+    "generation": 1,
+    "replicas": 1,
+    "available": 1,
+    "containers": [
+      {
+        "name": "app",
+        "image": "registry:5000/student/capstone-app@sha256:2e71b51b16b1e89934695137bef1f692c0ee4c1c7ee1d243b4c4f549863b5ddc",
+        "resources": {
+          "limits": {
+            "cpu": "500m",
+            "memory": "512Mi"
+          },
+          "requests": {
+            "cpu": "100m",
+            "memory": "192Mi"
+          }
+        }
+      }
+    ],
+    "pods": [
+      {
+        "name": "gearrent-74c8885494-hq7r5",
+        "uid": "d903ea58-5bd0-4b6d-8ce4-8f21c8058bae",
+        "containers": [
+          {
+            "name": "app",
+            "ready": true,
+            "restarts": 2,
+            "imageID": "registry:5000/student/capstone-app@sha256:2e71b51b16b1e89934695137bef1f692c0ee4c1c7ee1d243b4c4f549863b5ddc"
+          }
+        ]
+      }
+    ]
+  },
+  "deployment_unchanged": true,
+  "requests": [
+    {
+      "offset_s": 0.016,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 0.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 0.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 0.375,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 0.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 0.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 0.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 0.875,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 1.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 1.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 1.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 1.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 1.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 1.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 1.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 1.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 2.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 2.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 2.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 2.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 2.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 2.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 2.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 2.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 3.0,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 3.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 3.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 3.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 3.5,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 3.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 3.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 3.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 4.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 4.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 47.0
+    },
+    {
+      "offset_s": 4.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 4.375,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 4.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 4.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 4.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 4.875,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 5.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 5.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 5.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 5.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 5.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 5.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 5.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 5.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 6.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 6.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 6.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 6.391,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 6.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 6.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 6.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 6.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 7.0,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 7.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 7.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 7.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 7.5,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 7.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 7.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 7.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 8.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 8.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 8.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 8.375,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 8.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 8.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 8.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 8.875,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 9.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 9.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 9.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 9.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 9.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 9.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 9.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 9.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 10.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 10.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 10.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 10.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 10.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 47.0
+    },
+    {
+      "offset_s": 10.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 10.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 10.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 11.0,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 11.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 11.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 11.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 47.0
+    },
+    {
+      "offset_s": 11.5,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 11.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 11.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 11.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 12.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 12.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 12.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 12.375,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 12.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 12.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 12.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 12.875,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 13.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 13.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 13.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 13.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 13.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 13.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 13.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 13.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 14.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 14.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 14.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 14.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 14.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 14.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 14.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 14.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 15.0,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 15.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 15.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 15.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 15.5,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 15.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 15.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 15.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 16.016,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 16.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 16.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 16.375,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 16.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 16.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 16.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 16.875,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 17.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 17.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 17.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 47.0
+    },
+    {
+      "offset_s": 17.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 17.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 17.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 17.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 17.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 18.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 18.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 18.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 18.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 18.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 18.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 18.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 18.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 19.0,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 19.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 19.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 19.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 47.0
+    },
+    {
+      "offset_s": 19.5,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 19.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 19.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 19.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 20.016,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 20.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 20.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 20.375,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 20.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 20.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 20.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 47.0
+    },
+    {
+      "offset_s": 20.875,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 21.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 21.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 21.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 21.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 21.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 21.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 21.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 21.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 22.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 22.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 22.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 22.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 22.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 22.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 22.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 22.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 23.0,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 23.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 23.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 23.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 23.5,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 23.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 23.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 23.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 24.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 24.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 24.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 24.375,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 24.485,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 24.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 24.766,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 24.875,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 25.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 25.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 25.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 25.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 25.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 25.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 25.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 25.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 26.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 26.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 26.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 26.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 26.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 26.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 26.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 26.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 27.0,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 27.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 27.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 27.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 27.5,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 27.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 27.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 27.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 28.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 28.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 28.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 28.375,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 28.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 28.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 28.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 28.875,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 29.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 29.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 29.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 29.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 29.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 29.641,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 29.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 29.891,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 30.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 30.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 30.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 30.391,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 30.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 30.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 30.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 30.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 31.0,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 31.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 31.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 31.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 31.5,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 31.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 31.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 31.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 32.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 32.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 32.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 32.375,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 32.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 32.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 32.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 32.875,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 33.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 33.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 33.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 33.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 33.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 33.641,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 33.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 33.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 34.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 34.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 34.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 34.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 34.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 34.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 34.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 34.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 35.0,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 35.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 35.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 35.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 35.5,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 47.0
+    },
+    {
+      "offset_s": 35.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 35.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 35.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 36.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 36.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 36.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 36.375,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 36.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 36.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 36.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 36.875,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 37.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 37.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 37.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 37.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 37.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 37.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 37.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 37.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 38.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 38.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 38.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 38.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 38.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 38.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 38.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 38.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 38.985,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 39.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 39.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 39.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 39.5,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 39.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 47.0
+    },
+    {
+      "offset_s": 39.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 39.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 40.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 40.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 40.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 40.375,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 40.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 40.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 40.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 40.891,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 41.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 41.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 41.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 41.391,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 41.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 41.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 41.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 41.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 42.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 42.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 42.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 42.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 42.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 42.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 42.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 42.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 43.0,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 43.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 43.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 43.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 43.5,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 43.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 43.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 43.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 44.016,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 44.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 44.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 44.375,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 44.516,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 44.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 44.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 44.875,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 45.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 45.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 45.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 45.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 45.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 45.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 45.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 45.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 46.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 46.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 46.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 46.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 46.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 46.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 46.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 46.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 47.0,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 47.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 47.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 47.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 47.516,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 47.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 47.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 47.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 48.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 48.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 47.0
+    },
+    {
+      "offset_s": 48.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 48.375,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 48.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 48.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 48.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 48.875,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 49.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 49.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 49.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 49.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 49.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 49.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 49.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 49.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 50.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 50.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 50.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 50.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 50.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 50.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 50.766,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 50.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 51.0,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 51.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 51.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 51.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 51.5,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 51.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 51.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 51.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 52.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 52.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 52.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 52.375,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 63.0
+    },
+    {
+      "offset_s": 52.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 52.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 52.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 52.875,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 53.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 53.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 53.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 53.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 53.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 53.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 53.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 53.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 54.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 54.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 54.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 54.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 54.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 54.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 54.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 54.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 55.0,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 55.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 55.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 55.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 55.5,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 55.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 55.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 55.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 56.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 56.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 56.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 56.375,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 56.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 56.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 56.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 56.875,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 57.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 57.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 57.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 57.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 57.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 57.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 57.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 57.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 58.016,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 58.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 58.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 58.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 58.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 58.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 58.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 58.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 59.0,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 59.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 59.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 59.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 59.5,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 59.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 59.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 59.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 60.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 60.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 60.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 60.375,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 60.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 60.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 60.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 60.875,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 61.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 61.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 61.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 61.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 61.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 61.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 61.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 61.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 62.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 62.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 62.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 62.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 62.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 62.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 62.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 62.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 63.0,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 63.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 63.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 63.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 63.5,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 63.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 157.0
+    },
+    {
+      "offset_s": 63.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 188.0
+    },
+    {
+      "offset_s": 63.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 94.0
+    },
+    {
+      "offset_s": 64.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 64.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 110.0
+    },
+    {
+      "offset_s": 64.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 79.0
+    },
+    {
+      "offset_s": 64.375,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 64.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 141.0
+    },
+    {
+      "offset_s": 64.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 64.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 64.875,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 65.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 65.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 65.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 65.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 65.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 65.61,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 140.0
+    },
+    {
+      "offset_s": 65.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 391.0
+    },
+    {
+      "offset_s": 65.875,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 3875.0
+    },
+    {
+      "offset_s": 66.0,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 3625.0
+    },
+    {
+      "offset_s": 66.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 110.0
+    },
+    {
+      "offset_s": 66.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 672.0
+    },
+    {
+      "offset_s": 66.375,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 1657.0
+    },
+    {
+      "offset_s": 66.5,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 3125.0
+    },
+    {
+      "offset_s": 66.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 3110.0
+    },
+    {
+      "offset_s": 66.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 1375.0
+    },
+    {
+      "offset_s": 67.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 1000.0
+    },
+    {
+      "offset_s": 67.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 875.0
+    },
+    {
+      "offset_s": 68.032,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 1718.0
+    },
+    {
+      "offset_s": 68.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 110.0
+    },
+    {
+      "offset_s": 68.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 110.0
+    },
+    {
+      "offset_s": 68.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 94.0
+    },
+    {
+      "offset_s": 69.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 110.0
+    },
+    {
+      "offset_s": 69.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 110.0
+    },
+    {
+      "offset_s": 69.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 79.0
+    },
+    {
+      "offset_s": 69.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 204.0
+    },
+    {
+      "offset_s": 69.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 110.0
+    },
+    {
+      "offset_s": 69.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 69.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 94.0
+    },
+    {
+      "offset_s": 69.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 79.0
+    },
+    {
+      "offset_s": 70.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 70.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 70.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 79.0
+    },
+    {
+      "offset_s": 70.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 70.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 70.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 70.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 70.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 71.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 71.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 71.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 71.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 71.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 71.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 31.0
+    },
+    {
+      "offset_s": 71.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 79.0
+    },
+    {
+      "offset_s": 71.766,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 63.0
+    },
+    {
+      "offset_s": 72.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 72.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 72.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 72.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 72.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 72.735,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 31.0
+    },
+    {
+      "offset_s": 72.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 72.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 73.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 73.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 73.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 47.0
+    },
+    {
+      "offset_s": 73.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 73.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 73.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 73.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 73.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 74.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 74.141,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 74.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 74.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 74.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 74.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 74.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 74.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 75.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 75.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 75.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 47.0
+    },
+    {
+      "offset_s": 75.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 75.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 75.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 75.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 75.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 76.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 76.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 76.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 76.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 76.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 76.735,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 76.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 76.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 77.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 77.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 77.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 77.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 77.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 77.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 77.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 77.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 78.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 78.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 78.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 78.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 78.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 78.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 78.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 78.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 79.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 79.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 79.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 79.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 79.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 79.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 79.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 79.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 80.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 80.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 80.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 80.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 80.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 80.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 80.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 80.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 81.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 81.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 81.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 81.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 81.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 81.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 31.0
+    },
+    {
+      "offset_s": 81.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 81.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 79.0
+    },
+    {
+      "offset_s": 82.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 82.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 82.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 82.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 82.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 82.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 82.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 82.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 83.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 83.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 83.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 83.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 83.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 83.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 83.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 83.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 84.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 84.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 84.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 84.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 84.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 84.735,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 31.0
+    },
+    {
+      "offset_s": 84.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 84.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 85.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 85.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 85.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 85.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 85.641,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 85.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 85.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 47.0
+    },
+    {
+      "offset_s": 85.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 86.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 86.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 86.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 86.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 86.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 86.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 86.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 47.0
+    },
+    {
+      "offset_s": 86.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 87.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 87.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 47.0
+    },
+    {
+      "offset_s": 87.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 87.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 87.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 87.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 87.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 87.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 88.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 47.0
+    },
+    {
+      "offset_s": 88.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 47.0
+    },
+    {
+      "offset_s": 88.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 88.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 88.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 88.735,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 88.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 88.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 89.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 89.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 89.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 89.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 89.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 89.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 89.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 89.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 90.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 90.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 90.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 90.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 90.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 90.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 90.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 90.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 91.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 91.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 91.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 91.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 91.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 91.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 91.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 91.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 92.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 92.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 92.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 92.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 92.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 92.735,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 31.0
+    },
+    {
+      "offset_s": 92.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 92.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 93.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 93.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 93.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 93.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 93.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 93.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 93.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 93.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 94.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 94.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 94.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 94.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 94.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 94.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 94.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 79.0
+    },
+    {
+      "offset_s": 94.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 79.0
+    },
+    {
+      "offset_s": 95.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 95.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 95.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 95.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 95.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 95.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 31.0
+    },
+    {
+      "offset_s": 95.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 95.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 96.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 96.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 96.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 96.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 96.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 96.735,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 96.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 96.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 97.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 97.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 97.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 97.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 97.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 97.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 97.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 97.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 98.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 98.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 98.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 98.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 98.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 98.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 98.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 98.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 99.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 99.141,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 31.0
+    },
+    {
+      "offset_s": 99.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 99.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 99.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 99.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 99.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 99.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 100.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 100.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 100.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 100.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 100.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 100.735,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 31.0
+    },
+    {
+      "offset_s": 100.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 100.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 101.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 101.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 101.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 101.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 101.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 101.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 31.0
+    },
+    {
+      "offset_s": 101.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 101.766,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 102.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 102.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 102.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 102.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 102.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 102.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 102.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 102.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 103.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 103.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 103.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 103.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 103.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 103.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 103.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 103.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 104.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 104.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 104.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 104.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 104.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 104.735,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 104.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 104.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 105.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 105.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 105.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 105.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 105.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 105.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 105.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 105.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 106.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 106.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 106.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 106.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 106.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 106.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 106.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 106.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 107.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 107.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 107.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 107.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 107.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 107.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 31.0
+    },
+    {
+      "offset_s": 107.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 107.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 108.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 108.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 108.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 108.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 108.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 108.735,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 31.0
+    },
+    {
+      "offset_s": 108.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 108.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 109.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 109.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 109.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 109.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 109.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 109.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 31.0
+    },
+    {
+      "offset_s": 109.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 109.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 110.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 110.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 110.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 110.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 110.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 110.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 110.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 110.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 111.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 111.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 111.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 111.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 111.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 111.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 111.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 111.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 112.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 112.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 112.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 112.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 112.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 112.735,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 31.0
+    },
+    {
+      "offset_s": 112.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 112.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 113.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 113.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 113.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 113.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 113.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 113.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 113.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 79.0
+    },
+    {
+      "offset_s": 113.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 79.0
+    },
+    {
+      "offset_s": 114.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 114.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 114.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 114.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 114.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 114.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 31.0
+    },
+    {
+      "offset_s": 114.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 114.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 115.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 115.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 115.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 115.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 115.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 115.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 115.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 115.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 116.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 116.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 116.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 116.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 116.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 116.735,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 116.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 116.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 117.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 117.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 117.25,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 117.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 117.625,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 117.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 31.0
+    },
+    {
+      "offset_s": 117.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 117.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 118.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 118.125,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 118.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 118.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 118.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 118.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 15.0
+    },
+    {
+      "offset_s": 118.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 118.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 119.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 119.125,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 119.25,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 32.0
+    },
+    {
+      "offset_s": 119.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 0.0
+    },
+    {
+      "offset_s": 119.625,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 119.735,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 31.0
+    },
+    {
+      "offset_s": 119.75,
+      "path": "/api/equipments",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    },
+    {
+      "offset_s": 119.75,
+      "path": "/api/equipments/available?startDate=2026-11-24&endDate=2026-11-26",
+      "status": 200,
+      "error": null,
+      "latency_ms": 16.0
+    }
+  ],
+  "metrics_samples": [
+    {
+      "time": "2026-11-23T13:31:16.867967+00:00",
+      "pods": [
+        {
+          "name": "gearrent-74c8885494-hq7r5",
+          "metrics_time": "2026-11-23T13:30:55Z",
+          "window": "14.605s",
+          "containers": [
+            {
+              "name": "app",
+              "cpu_m": 41.846489999999996,
+              "memory_mib": 220.6484375
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "time": "2026-11-23T13:31:31.985713+00:00",
+      "pods": [
+        {
+          "name": "gearrent-74c8885494-hq7r5",
+          "metrics_time": "2026-11-23T13:31:13Z",
+          "window": "17.908s",
+          "containers": [
+            {
+              "name": "app",
+              "cpu_m": 35.746537,
+              "memory_mib": 220.0078125
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "time": "2026-11-23T13:31:47.125959+00:00",
+      "pods": [
+        {
+          "name": "gearrent-74c8885494-hq7r5",
+          "metrics_time": "2026-11-23T13:31:39Z",
+          "window": "25.784s",
+          "containers": [
+            {
+              "name": "app",
+              "cpu_m": 72.33722399999999,
+              "memory_mib": 228.34375
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "time": "2026-11-23T13:32:02.253882+00:00",
+      "pods": [
+        {
+          "name": "gearrent-74c8885494-hq7r5",
+          "metrics_time": "2026-11-23T13:31:39Z",
+          "window": "25.784s",
+          "containers": [
+            {
+              "name": "app",
+              "cpu_m": 72.33722399999999,
+              "memory_mib": 228.34375
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "time": "2026-11-23T13:32:17.383379+00:00",
+      "pods": [
+        {
+          "name": "gearrent-74c8885494-hq7r5",
+          "metrics_time": "2026-11-23T13:32:09Z",
+          "window": "30.052s",
+          "containers": [
+            {
+              "name": "app",
+              "cpu_m": 59.382802999999996,
+              "memory_mib": 228.7578125
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "time": "2026-11-23T13:32:32.567866+00:00",
+      "pods": [
+        {
+          "name": "gearrent-74c8885494-hq7r5",
+          "metrics_time": "2026-11-23T13:32:20Z",
+          "window": "11.55s",
+          "containers": [
+            {
+              "name": "app",
+              "cpu_m": 53.912293999999996,
+              "memory_mib": 229.5859375
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "time": "2026-11-23T13:32:47.729253+00:00",
+      "pods": [
+        {
+          "name": "gearrent-74c8885494-hq7r5",
+          "metrics_time": "2026-11-23T13:32:39Z",
+          "window": "19.106s",
+          "containers": [
+            {
+              "name": "app",
+              "cpu_m": 214.307704,
+              "memory_mib": 242.546875
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "time": "2026-11-23T13:33:02.895401+00:00",
+      "pods": [
+        {
+          "name": "gearrent-74c8885494-hq7r5",
+          "metrics_time": "2026-11-23T13:32:39Z",
+          "window": "19.106s",
+          "containers": [
+            {
+              "name": "app",
+              "cpu_m": 214.307704,
+              "memory_mib": 242.546875
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "metrics_errors": [],
+  "summary": {
+    "attempts": 949,
+    "successful": 949,
+    "statuses": {
+      "200": 949
+    },
+    "actual_rps": 7.9238,
+    "success_percent": 100.0,
+    "client_p95_ms": 47.0,
+    "client_max_ms": 3875.0,
+    "sample_count": 8,
+    "cpu_p95_m": 214.307704,
+    "cpu_max_m": 214.307704,
+    "memory_p95_mib": 242.546875,
+    "memory_max_mib": 242.546875
+  }
+}

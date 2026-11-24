@@ -1,0 +1,13 @@
+{
+  "source": "4987995c0332de16c9953ef45f23eab5e2448433",
+  "image": "registry:5000/student/capstone-app@sha256:2e71b51b16b1e89934695137bef1f692c0ee4c1c7ee1d243b4c4f549863b5ddc",
+  "peak_cpu_m": 214.307704,
+  "peak_memory_mib": 242.546875,
+  "cpu_limit_headroom_percent": 57.1384592,
+  "memory_limit_headroom_percent": 52.6275634765625,
+  "proposed_memory_request_mib": 320,
+  "costs": {
+    "monthly_total_idr": 1738000,
+    "idr_per_1000_successful_requests": 17380.0
+  }
+}
