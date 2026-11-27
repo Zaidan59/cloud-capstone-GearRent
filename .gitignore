@@ -23,8 +23,6 @@ backups/
 
 # Local AI session notes 
 AI_CONTEXT.md
-docs/*
-!docs/capacity/
 AGENTS.md
 scripts/__pycache__/
 tests/__pycache__/

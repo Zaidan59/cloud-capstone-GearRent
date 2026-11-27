@@ -3,10 +3,12 @@
 Sistem informasi *cloud-native* multi-tenant untuk pengelolaan penyewaan (*rental*), alokasi unit, serah-terima/inspeksi, dan pemeliharaan (*maintenance*) peralatan multimedia.
 
 **Tim Kelompok 2:**
-- Muhammad Kevin Rasendriya (2210512104)
-- Muhammad Zaidan (2410512043)
-- Dhaifulloh Raihan Zayyan (2410512129)
-- Justin Joshia Banjarnahor (2410512133)
+- Muhammad Kevin Rasendriya (`2210512104`)
+- Muhammad Zaidan (`2410512043`)
+- Dhaifulloh Raihan Zayyan (`2410512129`)
+- Justin Joshia Banjarnahor (`2410512133`)
+
+> **Panduan Pengujian:** Seluruh skenario pengujian aplikasi, API OIDC, observability, self-healing, backup/restore, dan benchmark kapasitas dipusatkan di **[TESTING.md](TESTING.md)**.
 
 ## Struktur Repository
 
@@ -14,17 +16,20 @@ Sistem informasi *cloud-native* multi-tenant untuk pengelolaan penyewaan (*renta
 ├── app/              # Backend Quarkus GearRent (REST API, tests, Dockerfile, .gitea CI)
 ├── gitops/           # Manifest Kubernetes Kustomize (base & overlays/dev) untuk Argo CD
 ├── infrastructure/   # Docker Compose (Gitea, Runner, Postgres, Keycloak, Registry, Prometheus, Grafana)
-├── scripts/          # Skrip otomasi lab (Bash .sh & PowerShell .ps1)
+├── scripts/          # Skrip otomasi setup, deploy, backup/restore, & kapasitas (.sh & .ps1/.py)
+├── docs/             # Proposal (proposal/), Kapasitas M8 (capacity/), ADR (decisions/), & Portfolio (evidence/)
+├── tests/            # Unit test skrip kapasitas Python (test_capacity.py)
 ├── smoke-test/       # Uji koneksi registry & kluster k3d
 ├── templates/        # Template referensi infrastruktur
-└── guides/           # Dokumen panduan capstone
+├── guides/           # Dokumen panduan capstone dari dosen
+└── TESTING.md        # Panduan lengkap pengujian end-to-end M2–M8
 ```
 
 ---
 
-## 1. Mode Coding Cepat (Aplikasi Saja — `:8080`)
+## 1. Mode Pengerjaan Cepat (Aplikasi Saja — `:8080`)
 
-Untuk mengembangkan kode di `app/` dengan *live reload* tanpa kluster Kubernetes penuh (butuh **JDK 21+**; Docker opsional jika perlu Postgres via `up-core`).
+Untuk mengembangkan kode di `app/` dengan *live reload* tanpa kluster Kubernetes penuh (butuh **JDK 21+**; Docker opsional jika butuh Postgres via `up-core`).
 
 ```bash
 # Linux / macOS
@@ -39,13 +44,15 @@ cd app; .\mvnw.cmd quarkus:dev
 - **App / Swagger UI:** `http://localhost:8080/` | `http://localhost:8080/q/swagger-ui/`
 - **Health / OpenAPI:** `http://localhost:8080/q/health` | `http://localhost:8080/q/openapi`
 
+> **Catatan:** Mode `quarkus:dev` berjalan di `:8080` dan tidak di-scrape Prometheus. Untuk verifikasi lengkap di kluster Kubernetes, gunakan Ingress `:8088` sesuai panduan di [TESTING.md](TESTING.md).
+
 ---
 
-## 2. Panduan End-to-End Cloud-Native Lab (Setup ➔ Deploy ➔ Test ➔ M5 ➔ M7)
+## 2. Setup Awal Infrastruktur, Cluster, & Deploy Pertama
 
-Prasyarat: **Docker & Docker Compose**, **Git**, **curl**, **kubectl**, **k3d** *(plus **jq** di Linux/macOS)*. Jalankan semua perintah dari **root repository**.
+Prasyarat: **Docker & Docker Compose**, **Git**, **curl**, **kubectl**, **k3d**, **Python 3.10+** *(plus **jq** di Linux/macOS)*. Jalankan semua perintah dari **root repository**.
 
-### Langkah 1 — Setup Infrastruktur, Cluster, & Deploy Pertama
+### A. Setup Core Services, Cluster `k3d`, & Argo CD
 
 **Linux / macOS (Bash):**
 ```bash
@@ -85,90 +92,35 @@ Remove-Item -Recurse -Force app\target -ErrorAction SilentlyContinue
 .\scripts\deploy-lab.ps1
 ```
 
-> **Catatan:**
+### B. Nyalakan Stack Observability (Prometheus & Grafana)
+
+```bash
+./scripts/up-observability.sh   # Windows: .\scripts\up-observability.ps1
+```
+
+> **Catatan Setup:**
 > - `deploy-lab` di akhir memicu CI Run #2 setelah secret `GITOPS_PASSWORD` tersimpan di Gitea (Run #1 saat `bootstrap-project` sering gagal `401`). Tunggu hingga Argo CD berstatus `Synced` & `Healthy`.
 > - Jika runner error `runner registration token not found`, jalankan ulang `bootstrap-gitea`, hapus `docker rm -f capstone-gitea-runner`, lalu jalankan `start-runner`.
 > - Jika `k3d` tidak stabil (`EOF`), buat ulang kluster dengan `--image rancher/k3s:v1.35.10-k3s1` (flag lengkap ada di `scripts/create-cluster.*`).
 
 ---
 
-### Langkah 2 — Automated Tests & Uji API di Kubernetes (`:8088`)
+## 3. Alur Pengerjaan Harian & Start/Stop Lab
 
-> **Penting:** Traffic ke Kubernetes menggunakan **`http://capstone.localhost:8088`** (tercatat di Prometheus/Grafana), berbeda dengan `quarkus:dev` (`:8080`).
-
-1. **Jalankan 11 automated tests (H2 in-memory + OIDC mock):**
-   ```bash
-   cd app && ./mvnw -B verify && cd ..    # Windows: cd app; .\mvnw.cmd -B verify; cd ..
-   ```
-2. **Uji endpoint `/api/*` di Kubernetes dengan Bearer JWT Keycloak** *(lihat [TESTING.md](TESTING.md) untuk skenario lengkap M2–M8)*:
-   ```bash
-   # Ambil token Keycloak (operator & usera)
-   KC="http://127.0.0.1:8081/realms/capstone/protocol/openid-connect/token"
-   TOK_OP=$(curl -sf -X POST "$KC" -d "client_id=capstone-app" -d "grant_type=password" -d "username=operator" -d "password=operator" | jq -r '.access_token')
-   TOK_USER=$(curl -sf -X POST "$KC" -d "client_id=capstone-app" -d "grant_type=password" -d "username=usera" -d "password=usera" | jq -r '.access_token')
-
-   # Cek health, akses positif (200), dan uji negatif (401 tanpa token & 403 lintas role)
-   curl -sf http://capstone.localhost:8088/q/health/ready
-   curl -s -H "Authorization: Bearer $TOK_OP" http://capstone.localhost:8088/api/equipments
-   curl -s -o /dev/null -w "no-token: %{http_code}\n" http://capstone.localhost:8088/api/equipments
-   curl -s -o /dev/null -w "user-report: %{http_code}\n" -H "Authorization: Bearer $TOK_USER" http://capstone.localhost:8088/api/reports/summary
-   ```
-
----
-
-### Langkah 3 — Observability & Dashboard SLO (M5)
-
-1. **Nyalakan Prometheus & Grafana:**
-   ```bash
-   ./scripts/up-observability.sh   # Windows: .\scripts\up-observability.ps1
-   ```
-2. **Kirim beberapa request ke `:8088`** selama ~20–30 detik (minimal 2 siklus scrape `10s`) agar kurva `rate()` & `p95 Latency` muncul:
-   ```bash
-   for i in $(seq 1 15); do curl -sf -H "Authorization: Bearer $TOK_OP" http://capstone.localhost:8088/api/equipments > /dev/null; sleep 2; done
-   ```
-3. **Verifikasi dashboard:**
-   - **Prometheus:** `http://127.0.0.1:9090/targets` → pastikan `capstone-app` berstatus **`UP`**.
-   - **Grafana:** `http://127.0.0.1:3000/d/gearrent-overview/gearrent-service-overview-and-slo` (`admin`/`admin`), atur rentang waktu ke `Last 5 minutes`.
-
----
-
-### Langkah 4 — Uji Self-Healing & Backup/Restore PostgreSQL (M7)
-
-1. **Uji pod recovery (Kubernetes + Argo CD `selfHeal`):**
-   ```bash
-   kubectl -n capstone delete pod -l app=capstone-app
-   kubectl -n capstone wait --for=condition=Ready pod -l app=capstone-app --timeout=120s
-   curl -sf http://capstone.localhost:8088/q/health/ready
-   ```
-2. **Backup & validasi restore ke database terpisah (`capstone_restore_validation`):**
-   ```bash
-   # Linux / macOS
-   ./scripts/backup-postgres.sh
-   ./scripts/restore-postgres-validation.sh "$(ls -t backups/*.dump | head -n 1)"
-   ```
-   ```powershell
-   # Windows PowerShell (5.1 maupun 7+)
-   .\scripts\backup-postgres.ps1
-   $latestDump = (Get-ChildItem backups\*.dump | Sort-Object LastWriteTime -Descending | Select-Object -First 1).FullName
-   .\scripts\restore-postgres-validation.ps1 $latestDump
-   ```
-
----
-
-## 3. Alur Kerja Harian & Start/Stop Lab
-
+### A. Commit & Deploy Perubahan Kode (`app/`)
 ```bash
-# 1. Verifikasi & commit perubahan (jangan commit infrastructure/.env, .runtime/, atau backups/*.dump)
-cd app && ./mvnw -B verify && cd ..
+# 1. Commit perubahan (jangan commit infrastructure/.env, .runtime/, atau backups/*.dump)
 git status && git add <file> && git commit -m "feat: ..." && git push origin main
 
 # 2. Deploy commit HEAD folder app/ ke Gitea CI -> Registry -> Argo CD -> k3d
 ./scripts/deploy-lab.sh         # Windows: .\scripts\deploy-lab.ps1
 ```
 
-**Matikan sementara / nyalakan kembali setelah restart laptop:**
+> **Catatan `gitops/`:** `deploy-lab` hanya mendorong folder `app/` ke repo Gitea `student/capstone-app`. Jika Anda mengubah manifest di `gitops/` (misalnya resource `deployment.yaml` atau `configmap.yaml`), dorong juga perubahannya ke repo Gitea `student/capstone-gitops` agar Argo CD melakukan sinkronisasi ke kluster.
+
+### B. Matikan & Nyalakan Kembali Lab Setelah Restart Laptop
 ```bash
-# Stop (data & cluster tetap tersimpan)
+# Stop sementara (data & kluster tetap tersimpan)
 k3d cluster stop capstone
 docker compose --env-file infrastructure/.env -f infrastructure/docker-compose.yml --profile ci --profile observability stop
 
@@ -176,15 +128,17 @@ docker compose --env-file infrastructure/.env -f infrastructure/docker-compose.y
 ./scripts/up-core.sh && k3d cluster start capstone && ./scripts/start-runner.sh && ./scripts/status.sh
 ```
 
+*(Jika menggunakan Prometheus/Grafana, jalankan kembali `./scripts/up-observability.sh`.)*
+
 ---
 
-## 4. Daftar URL & Kredensial Default
+## 4. Daftar URL & Kredensial Default Lab Lokal
 
 | Layanan | URL | Kredensial / Keterangan |
 | :--- | :--- | :--- |
-| **GearRent App (k3d Ingress)** | `http://capstone.localhost:8088` | Swagger: `/q/swagger-ui/`, Health: `/q/health`, Metrics: `/q/metrics` |
+| **GearRent App (`k3d` Ingress)** | `http://capstone.localhost:8088` | Swagger: `/q/swagger-ui/`, Health: `/q/health`, Metrics: `/q/metrics` |
 | **Gitea (Git & CI)** | `http://127.0.0.1:3001` | `student` / `student` *(Admin: `capstone-admin` / `capstone-admin`)* |
-| **Keycloak (IAM/OIDC)** | `http://127.0.0.1:8081` | `admin` / `admin` |
+| **Keycloak (IAM/OIDC)** | `http://127.0.0.1:8081` | `admin` / `admin` *(Realm `capstone`)* |
 | **PostgreSQL** | `127.0.0.1:5432` | `capstone` / `capstone` *(DB: `capstone`)* |
 | **OCI Registry** | `http://127.0.0.1:5001/v2/_catalog` | Registry lokal |
 | **Argo CD UI** | `https://127.0.0.1:8082` | Jalankan `./scripts/argocd-ui.sh`, user `admin` |
@@ -198,6 +152,13 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String((kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}")))
 ```
 
-## M8 Capacity dan FinOps
+---
 
-Pengukuran baseline, worksheet resource, model biaya, dan rencana CloudStack tersedia di [docs/capacity](docs/capacity/README.md). Bukti kontribusi 09 ada di [cloud-capstone-A02](cloud-capstone-A02/README.md).
+## 5. Dokumentasi Pendukung & Pengujian
+
+- **Panduan Pengujian Lengkap (M2–M8):** [TESTING.md](TESTING.md)
+- **Proposal Awal (M0/M1):** [Kelompok 2_Capstone_104_043_129_133.pdf](docs/proposal/Kelompok%202_Capstone_104_043_129_133.pdf)
+- **Kapasitas & FinOps (M8):** [docs/capacity/README.md](docs/capacity/README.md) & [docs/capacity/REPORT.md](docs/capacity/REPORT.md)
+- **Architecture Decision Records (ADR-001 s.d. ADR-007):** [docs/decisions/README.md](docs/decisions/README.md)
+- **Portfolio Evidence Terpadu (01–11):** [docs/evidence/README.md](docs/evidence/README.md)
+- **Catatan Keamanan Lab Lokal:** [SECURITY_NOTES.md](SECURITY_NOTES.md) & [TROUBLESHOOTING.md](TROUBLESHOOTING.md)

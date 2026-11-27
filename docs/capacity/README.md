@@ -5,7 +5,7 @@ Muhammad Kevin Rasendriya, NIM 2210512104. Group A02.
 Bagian ini mengukur resource GearRent yang sedang berjalan, lalu menghitung
 headroom dan model biaya. Hasil ada di [REPORT.md](REPORT.md), data mentah
 di [results/2026-11-23](results/2026-11-23), dan bukti visual di
-[09_evidence.jpg](../../cloud-capstone-A02/09-capacity-finops/09_evidence.jpg).
+[09_evidence.jpg](09_evidence.jpg).
 
 ## Persiapan
 

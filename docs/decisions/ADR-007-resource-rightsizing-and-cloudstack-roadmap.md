@@ -31,5 +31,5 @@ Manifest awal `gitops/base/deployment.yaml` menetapkan resource pod `requests: 1
 ## Traceability / Evidence
 - `gitops/base/deployment.yaml`
 - `docs/capacity/REPORT.md`, `docs/capacity/README.md`, `docs/capacity/cost-assumptions.json`
-- `cloud-capstone-A02/09-capacity-finops/09_evidence.jpg`
+- `docs/capacity/09_evidence.jpg` (dirujuk dari `docs/evidence/09-capacity-finops/README.md`)
 - `scripts/capacity.py`, `scripts/capacity_report.py`, `tests/test_capacity.py` (`4/4 OK`)
