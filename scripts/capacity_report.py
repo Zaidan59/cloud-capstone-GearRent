@@ -199,6 +199,33 @@ dan kode aplikasi tidak diubah oleh pekerjaan 09 ini.
     print(args.jpg)
 
 
+def _load_font(image_font, size, bold=False):
+    """Load a sans-serif TrueType font across Windows and Linux."""
+    arial = 'arialbd.ttf' if bold else 'arial.ttf'
+    liberation = f"LiberationSans-{'Bold' if bold else 'Regular'}.ttf"
+    dejavu = f"DejaVuSans{'-Bold' if bold else ''}.ttf"
+    candidates = [
+        f'C:/Windows/Fonts/{arial}',
+        f'/usr/share/fonts/liberation/{liberation}',
+        f'/usr/share/fonts/truetype/liberation/{liberation}',
+        f'/usr/share/fonts/truetype/liberation2/{liberation}',
+        f'/usr/share/fonts/TTF/{dejavu}',
+        f'/usr/share/fonts/truetype/dejavu/{dejavu}',
+        arial,
+        liberation,
+        dejavu,
+    ]
+    for path in candidates:
+        try:
+            return image_font.truetype(path, size)
+        except OSError:
+            continue
+    try:
+        return image_font.load_default(size=size)
+    except TypeError:
+        return image_font.load_default()
+
+
 def render_jpg(filename, records, sheet, started, finished):
     from PIL import Image, ImageDraw, ImageFont
     image = Image.new('RGB', (1800, 1450), '#f5f7f8')
@@ -208,7 +235,7 @@ def render_jpg(filename, records, sheet, started, finished):
     def text(x, y, value, size=27, bold=False, color='#19334a'):
         key = (size, bold)
         if key not in fonts:
-            fonts[key] = ImageFont.truetype(f"C:/Windows/Fonts/{'arialbd' if bold else 'arial'}.ttf", size)
+            fonts[key] = _load_font(ImageFont, size, bold)
         if draw.textbbox((0, 0), value, font=fonts[key])[2] > 1670 - max(0, x - 65):
             raise ValueError('Evidence text exceeds the image width')
         draw.text((x, y), value, font=fonts[key], fill=color)

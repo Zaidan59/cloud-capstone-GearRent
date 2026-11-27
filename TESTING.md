@@ -317,29 +317,65 @@ python3 -m unittest discover -s tests -p test_capacity.py -v
 ### B. Load Test & Sampling Metrics API dengan JWT (`scripts/capacity.py`)
 Gunakan `--token-file` (disimpan di luar repo, misalnya `/tmp/gearrent-token.txt`) karena runtime terbaru mewajibkan Bearer JWT Keycloak. *(Catatan: access token Keycloak default berlaku 5 menit, jadi perbarui token atau sesuaikan lifespan sebelum menjalankan semua fase.)*
 
+**Linux / macOS (Bash):**
 ```bash
-# 1. Simpan access token operator sementara di /tmp (Bash & Fish)
+# 1. Simpan access token operator sementara di /tmp
 curl -fsS -X POST "http://127.0.0.1:8081/realms/capstone/protocol/openid-connect/token" \
   -d "client_id=capstone-app" -d "grant_type=password" -d "username=operator" -d "password=operator" \
   | jq -r '.access_token' > /tmp/gearrent-token.txt
 
-# 2. Jalankan 3 fase pengukuran pada kluster k3d-capstone (pastikan folder output baru)
-SRC_SHA=$(git rev-parse HEAD)   # Fish: set SRC_SHA (git rev-parse HEAD)
+# 2. Jalankan 3 fase pengukuran pada kluster k3d-capstone
+SRC_SHA=$(git rev-parse HEAD)
 OUT_DIR="/tmp/m8-jwt-run"
+rm -rf "$OUT_DIR"
 
-python3 scripts/capacity.py --kubeconfig ~/.kube/config --context k3d-capstone \
+python3 scripts/capacity.py --kubeconfig "$HOME/.kube/config" --context k3d-capstone \
   --namespace capstone --deployment capstone-app --selector app=capstone-app \
   --url http://127.0.0.1:8088 --host capstone.localhost --source "$SRC_SHA" \
   --executor "Local k3d JWT test" --token-file /tmp/gearrent-token.txt \
   --workers 0 --seconds 60 --sample-seconds 15 --out "$OUT_DIR/idle"
 
-python3 scripts/capacity.py --kubeconfig ~/.kube/config --context k3d-capstone \
+python3 scripts/capacity.py --kubeconfig "$HOME/.kube/config" --context k3d-capstone \
   --namespace capstone --deployment capstone-app --selector app=capstone-app \
   --url http://127.0.0.1:8088 --host capstone.localhost --source "$SRC_SHA" \
   --executor "Local k3d JWT test" --token-file /tmp/gearrent-token.txt \
   --workers 2 --seconds 120 --sample-seconds 15 --out "$OUT_DIR/load-2"
 
-python3 scripts/capacity.py --kubeconfig ~/.kube/config --context k3d-capstone \
+python3 scripts/capacity.py --kubeconfig "$HOME/.kube/config" --context k3d-capstone \
+  --namespace capstone --deployment capstone-app --selector app=capstone-app \
+  --url http://127.0.0.1:8088 --host capstone.localhost --source "$SRC_SHA" \
+  --executor "Local k3d JWT test" --token-file /tmp/gearrent-token.txt \
+  --workers 8 --seconds 120 --sample-seconds 15 --out "$OUT_DIR/load-8"
+
+# 3. Hapus file token sementara setelah selesai
+rm -f /tmp/gearrent-token.txt
+```
+
+**Linux / macOS (Fish shell):**
+```fish
+# 1. Simpan access token operator sementara di /tmp
+curl -fsS -X POST "http://127.0.0.1:8081/realms/capstone/protocol/openid-connect/token" \
+  -d "client_id=capstone-app" -d "grant_type=password" -d "username=operator" -d "password=operator" \
+  | jq -r '.access_token' > /tmp/gearrent-token.txt
+
+# 2. Jalankan 3 fase pengukuran pada kluster k3d-capstone
+set SRC_SHA (git rev-parse HEAD)
+set OUT_DIR "/tmp/m8-jwt-run"
+rm -rf "$OUT_DIR"
+
+python3 scripts/capacity.py --kubeconfig "$HOME/.kube/config" --context k3d-capstone \
+  --namespace capstone --deployment capstone-app --selector app=capstone-app \
+  --url http://127.0.0.1:8088 --host capstone.localhost --source "$SRC_SHA" \
+  --executor "Local k3d JWT test" --token-file /tmp/gearrent-token.txt \
+  --workers 0 --seconds 60 --sample-seconds 15 --out "$OUT_DIR/idle"
+
+python3 scripts/capacity.py --kubeconfig "$HOME/.kube/config" --context k3d-capstone \
+  --namespace capstone --deployment capstone-app --selector app=capstone-app \
+  --url http://127.0.0.1:8088 --host capstone.localhost --source "$SRC_SHA" \
+  --executor "Local k3d JWT test" --token-file /tmp/gearrent-token.txt \
+  --workers 2 --seconds 120 --sample-seconds 15 --out "$OUT_DIR/load-2"
+
+python3 scripts/capacity.py --kubeconfig "$HOME/.kube/config" --context k3d-capstone \
   --namespace capstone --deployment capstone-app --selector app=capstone-app \
   --url http://127.0.0.1:8088 --host capstone.localhost --source "$SRC_SHA" \
   --executor "Local k3d JWT test" --token-file /tmp/gearrent-token.txt \
